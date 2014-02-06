@@ -1,0 +1,11 @@
+{
+  "name": "<%= _.slugify(appName) %>",
+  "version": "0.0.0",
+  "dependencies": {
+      "jquery": null,
+      "vue": null,
+      "json3": null,
+      "es5-shim": null
+  }
+}
+

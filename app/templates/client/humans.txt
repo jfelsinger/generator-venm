@@ -1,0 +1,16 @@
+/* humanstxt.org */
+
+/* TEAM */
+
+    <role: <name> 
+    twittter: @<twitter>
+    from: <from>
+
+/* THANKS */
+
+    <role: <name> 
+    twittter: @<twitter>
+    from: <from>
+
+/* SITE */
+    Languages: English

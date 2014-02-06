@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+
+    <title></title>
+
+    <link rel="stylesheet" href="/styles/main.css">
+
+    <meta name="description" content="">
+
+</head>
+<body>
+
+    <!-- My body is ready -->
+
+    <div id="UserList">
+        <ul>
+            <li v-repeat="users">{{ username }}</li>
+        </ul>
+    </div>
+
+    <script src="/bower_components/vue/dist/vue.min.js"></script>
+    <script>
+        var url = 'http://localhost:3000';
+        var userList = new Vue({
+
+            el: '#UserList',
+
+            created: function() {
+                this.fetchData();
+            },
+
+            methods: {
+                fetchData: function() {
+                    var xhr = new XMLHttpRequest(),
+                        self = this;
+                    xhr.open('GET', url);
+                    xhr.onload = function() {
+                        self.users = JSON.parse(xhr.responseText);
+                    };
+                    xhr.send();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

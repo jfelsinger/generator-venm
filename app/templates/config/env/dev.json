@@ -1,0 +1,6 @@
+{
+    "db": "mongodb://localhost/venm-dev",
+    "app": {
+        "name": "<%= appName %> - Dev"
+    }
+}

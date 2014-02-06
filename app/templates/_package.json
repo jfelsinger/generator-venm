@@ -1,0 +1,46 @@
+{
+    "name": "<%= _.slugify(appname) %>",
+    "description": "",
+    "version": "0.0.0",
+    "author": "",
+    "scripts": {
+        "start": "node node_modules/grunt-cli/bin/grunt serve"
+    },
+    "dependencies": {
+        "grunt": "latest",
+        "grunt-cli": "latest",
+        "express": "latest",
+        "mongoose": "latest",
+        "connect-mongo": "latest",
+        "forever": "latest",
+        "underscore": "latest",
+        "async": "latest"
+    },
+    "devDependencies": {
+        "grunt": "latest",
+        "bower": "latest",
+        "grunt-concurrent": "latest",
+        "jshint-stylish": "latest",
+        "grunt-bower-task": "latest",
+        "connect-livereload": "latest",
+        "grunt-svgmin": "latest",
+        "grunt-contrib-copy": "latest",
+        "grunt-contrib-clean": "latest",
+        "grunt-contrib-sass": "latest",
+        "grunt-contrib-watch": "latest",
+        "grunt-contrib-requirejs": "latest",
+        "grunt-contrib-cssmin": "latest",
+        "grunt-contrib-connect": "latest",
+        "grunt-contrib-imagemin": "latest",
+        "grunt-contrib-jshint": "latest",
+        "grunt-contrib-htmlmin": "latest",
+        "grunt-contrib-uglify": "latest",
+        "grunt-open": "latest",
+        "grunt-nodemon": "latest",
+        "grunt-mocha": "latest",
+        "load-grunt-tasks": "latest"
+    },
+    "engines": {
+        "node": ">=0.10.0"
+    }
+}

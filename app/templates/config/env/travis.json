@@ -1,0 +1,7 @@
+{
+    "db": "mongodb://localhost/venm-travis",
+    "port": 3001,
+    "app": {
+        "name": "<%= appName %> - Travis"
+    }
+}
