@@ -2,10 +2,13 @@ var async = require('async'),
     config = require('./config');
 
 module.exports = function(app) {
+    // Set opinionated defaults if the config has none for itself
+    var defaultController = config.defaultController || 'index';
     var defaultMethod = config.defaultControllerMethod || 'render';
 
     // Setup basic routes for requests that should be directed
     // to a particular controller & method.
+    app.get('/', routeToController);
     app.get('/:page', routeToController);
     app.get('/:page/:method', routeToController);
 
@@ -16,7 +19,7 @@ module.exports = function(app) {
     app.get('/:page/:method/*', routeToController);
 
     function routeToController(req, res, next) {
-        var page = req.params.page,
+        var page = req.params.page || defaultController || '',
             method = req.params.method || '';
 
         console.log(req.params);
