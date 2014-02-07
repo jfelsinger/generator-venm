@@ -8,5 +8,5 @@ node_js:
 - '0.10'
 before_install:
 - currentfolder=${PWD##*/}
-- if [ "$currentfolder" != 'generator-vemn-stack' ]; then cd .. && eval "mv $currentfolder
-  generator-vemn-stack" && cd generator-vemn-stack; fi
+- if [ "$currentfolder" != 'generator-venm' ]; then cd .. && eval "mv $currentfolder
+  generator-venm" && cd generator-venm; fi
