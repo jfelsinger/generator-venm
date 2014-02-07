@@ -3,7 +3,7 @@
 
 var assert = require('assert');
 
-describe('venm-stack generator', function () {
+describe('venm generator', function () {
     it('can be imported without blowing up', function () {
         var app = require('../app');
         assert(app !== undefined);

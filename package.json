@@ -1,12 +1,12 @@
 {
-  "name": "generator-venm-stack",
+  "name": "generator-venm",
   "version": "0.0.0",
   "description": "A generator for Yeoman",
   "keywords": [
     "yeoman-generator"
   ],
-  "homepage": "https://github.com/jfelsinger/generator-venm-stack",
-  "bugs": "https://github.com/jfelsinger/generator-venm-stack/issues",
+  "homepage": "https://github.com/jfelsinger/generator-venm",
+  "bugs": "https://github.com/jfelsinger/generator-venm/issues",
   "author": {
     "name": "Joel Felsinger",
     "email": "jffelsinger@gmail.com",
@@ -15,7 +15,7 @@
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/jfelsinger/generator-venm-stack.git"
+    "url": "git://github.com/jfelsinger/generator-venm.git"
   },
   "scripts": {
     "test": "mocha"

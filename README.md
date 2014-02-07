@@ -1,4 +1,4 @@
-# generator-venm-stack [![Build Status](https://secure.travis-ci.org/jfelsinger/generator-venm-stack.png?branch=master)](https://travis-ci.org/jfelsinger/generator-venm-stack)
+# generator-venm [![Build Status](https://secure.travis-ci.org/jfelsinger/generator-venm.png?branch=master)](https://travis-ci.org/jfelsinger/generator-venm)
 
 A generator for [Yeoman](http://yeoman.io).
 
@@ -23,16 +23,16 @@ $ npm install -g yo
 
 Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
 
-To install generator-venm-stack from npm, run:
+To install generator-venm from npm, run:
 
 ```
-$ npm install -g generator-venm-stack
+$ npm install -g generator-venm
 ```
 
 Finally, initiate the generator:
 
 ```
-$ yo venm-stack
+$ yo venm
 ```
 
 ### Getting To Know Yeoman
