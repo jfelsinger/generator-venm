@@ -9,10 +9,10 @@ var env = process.env.NODE_ENV = process.env.NODE_ENV || 'dev',
     config = require('./config/config'),
     mongoose = require('mongoose');
 
-// Bootstrap db connection
+// Connect to database
 var db = mongoose.connect(config.db);
 
-// Bootstrap models
+// Load models
 var models_path = __dirname + '/app/models';
 walk(models_path);
 

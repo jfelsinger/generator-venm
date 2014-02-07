@@ -1,8 +1,58 @@
-var async = require('async');
+var async = require('async'),
+    config = require('./config');
 
 module.exports = function(app) {
+    var defaultMethod = config.defaultControllerMethod || 'render';
 
-    // Home rouce
-    var index = require('../app/controllers/index');
-    app.get('/', index.render);
+    // Setup basic routes for requests that should be directed
+    // to a particular controller & method.
+    app.get('/:page', routeToController);
+    app.get('/:page/:method', routeToController);
+
+    // catch-all to include any extra data that a controller
+    // might be expecting.
+    //
+    // req.params[0] starts at the first of the wild-cart params
+    app.get('/:page/:method/*', routeToController);
+
+    function routeToController(req, res, next) {
+        var page = req.params.page,
+            method = req.params.method || '';
+
+        console.log(req.params);
+
+        try {
+            var controller = require('../app/controllers/' + page);
+        } catch(e) {
+            console.log('Bad request: ' + page);
+            return next();
+        }
+
+        // Check for valid controller and method
+        if (controller) {
+
+            // Run the given method, if there is one
+            if (method)
+            {
+
+                if (controller[method])
+                    controller[method](req, res);
+                else
+                    next();
+
+            // if not try to run the default instead
+            } else {
+
+                if (controller[defaultMethod])
+                    controller[defaultMethod](req, res);
+                else
+                    next(); // there is no  method, :(
+
+            }
+
+        } else {
+            // it was all a lie
+            next();
+        }
+    }
 };
