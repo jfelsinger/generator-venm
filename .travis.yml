@@ -1,8 +1,12 @@
 language: node_js
+deploy:
+  api_key:
+    secure: caiz3hBJotU644WfUyPyWZPXGPbIyGNiZnRiVNRbAWEH7mY/0ZXrntxnowFT9eduPK5doFSQUsruLgTK0bvvDRn+gRSrRtjCFgadcWmUNjGUrFTA34jiBBDDIKQu29V29qqptC7Wg6jfOkOdH4fpvrDTEe8qe8EGSGZHLJ/pnpM=
+  provider: npm
 node_js:
-  - '0.8'
-  - '0.10'
+- '0.8'
+- '0.10'
 before_install:
-  - currentfolder=${PWD##*/}
-  - if [ "$currentfolder" != 'generator-vemn-stack' ]; then cd .. && eval "mv $currentfolder generator-vemn-stack" && cd generator-vemn-stack; fi
-
+- currentfolder=${PWD##*/}
+- if [ "$currentfolder" != 'generator-vemn-stack' ]; then cd .. && eval "mv $currentfolder
+  generator-vemn-stack" && cd generator-vemn-stack; fi
