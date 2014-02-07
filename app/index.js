@@ -94,6 +94,10 @@ VenmStackGenerator.prototype.humans = function humans() {
     this.copy('client/humans.txt');
 };
 
+VenmStackGenerator.prototype.robots = function robots() {
+    this.copy('client/robots.txt');
+};
+
 VenmStackGenerator.prototype.server = function server() {
     this.copy('server.js');
 };
