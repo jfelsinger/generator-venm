@@ -3,7 +3,11 @@
   "version": "0.0.0",
   "description": "A generator for Yeoman",
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "vue",
+    "node",
+    "express",
+    "app"
   ],
   "homepage": "https://github.com/jfelsinger/generator-venm",
   "bugs": "https://github.com/jfelsinger/generator-venm/issues",
