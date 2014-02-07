@@ -22,8 +22,6 @@ module.exports = function(app) {
         var page = req.params.page || defaultController || '',
             method = req.params.method || '';
 
-        console.log(req.params);
-
         try {
             var controller = require('../app/controllers/' + page);
         } catch(e) {
@@ -38,23 +36,32 @@ module.exports = function(app) {
             if (method)
             {
 
-                if (controller[method])
+                if (controller[method]) {
                     controller[method](req, res);
-                else
+                } else {
+                    console.log('Bad request: ' + page + '/' + method);
                     next();
+                }
 
             // if not try to run the default instead
             } else {
 
-                if (controller[defaultMethod])
+                if (controller[defaultMethod]) {
                     controller[defaultMethod](req, res);
-                else
+                } else {
+                    console.log(
+                        'Bad request: ' + page 
+                        + ' doesn\' implement default method `' + defaultMethod 
+                        + '`'
+                    );
                     next(); // there is no  method, :(
+                }
 
             }
 
         } else {
             // it was all a lie
+            console.log('Bad request: ' + page);
             next();
         }
     }
