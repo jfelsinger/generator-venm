@@ -15,270 +15,95 @@ module.exports = function(grunt) {
         dist: 'dist'
     };
 
-
-
-    grunt.initConfig({
+    
+    var config = {
         yeoman: yeomanConfig,
-        pkg: grunt.file.readJSON('package.json'),
+        pkg: grunt.file.readJSON('package.json')
+    };
 
-        clean: {
-            dist: {
-                files: [{
-                    dot: true,
-                    src: [
-                        '.tmp',
-                        '<%%= yeoman.dist %>/*',
-                        '!<%% yeoman.dist %>/.git*'
-                    ]
-                }]
-            },
-            server: '.tmp'
+    config.clean = require('./grunt-configuration/clean');
+    config.sass = require('./grunt-configuration/sass');
+    config.hint = require('./grunt-configuration/jshint');
+    config.imagemin = require('./grunt-configuration/imagemin');
+    config.svgmin = require('./grunt-configuration/svgmin');
+    config.cssmin = require('./grunt-configuration/cssmin');
+    config.htmlmin = require('./grunt-configuration/htmlmin');
+    config.copy = require('./grunt-configuration/copy');
+    config.bower = require('./grunt-configuration/bower');
+    config.mocha = require('./grunt-configuration/mocha');
+    config.nodemon = require('./grunt-configuration/nodemon');
+    config.concurrent = require('./grunt-configuration/concurrent');
+
+    config.connect = {
+        options: {
+            ports: 8005,
+            hostname: 'localhost',
         },
 
-        sass: {
+        livereload: {
             options: {
-                style: 'compressed'
-                // sourcemap: true
-            },
-
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: '<%%= yeoman.client %>/styles',
-                    src: ['*.scss', '*.sass'],
-                    dest: '<%%= yeoman.client %>/styles',
-                    ext: '.css'
-                }]
-            },
-
-            server: {
-                options: {
-                    style: 'expanded'
-                },
-                files: [{
-                    expand: true,
-                    cwd: '<%%= yeoman.client %>/styles',
-                    src: ['*.scss', '*.sass'],
-                    dest: '<%%= yeoman.client %>/styles',
-                    ext: '.css'
-                }]
+                middleware: function(connect) {
+                    return [
+                        lrSnippet,
+                        mountFolder(connect, '.tmp'),
+                        mountFolder(connect, yeomanConfig.client)
+                    ];
+                }
             }
         },
 
-        jshint: {
+        test: {
             options: {
-                jshintrc: '.jshintrc',
-                // reporter: require('jshint-stylish')
-            },
-            all: [
-                'Gruntfile.js',
-                '<%%= yeoman.app %>/{,*/}*.js',
-                '<%%= yeoman.config %>/{,*/}*.js',
-                '<%%= yeoman.client %>/scripts/{,*/}*.js',
-                '!<%%= yeoman.client %>/scripts/vendor/*',
-                'test/{,*/}*.js'
-            ]
-        },
-
-        imagemin: {
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: '<%%= yeoman.client %>/images',
-                    src: '{,*/}*.{png,jpg,jpeg}',
-                    dest: '<%%= yeoman.dist %>/images'
-                }]
-            }
-        },
-
-        svgmin: {
-            dist: {
-                files: [{
-                    expand: true,
-                    cwd: '<%%= yeoman.client %>/images',
-                    src: '{,*/}*.svg',
-                    dest: '<%%= yeoman.dist %>/images'
-                }]
-            }
-        },
-
-        cssmin: {
-            dist: {
-                files: {
-                    '<%%= yeoman.dist %>/styles/main.css': [
-                        '.tmp/styles/main.css',
-                        '<%%= yeoman.client %>/styles/main.css'
-                    ]
+                middleware: function(connect) {
+                    return [
+                        lrSnippet,
+                        mountFolder(connect, '.tmp'),
+                        mountFolder(connect, 'test')
+                    ];
                 }
             }
         },
 
-        htmlmin: {
-            dist: {
-                options: {
-                },
-                files: [{
-                    expand: true,
-                    cwd: '<%%= yeoman.client %>',
-                    src: '*.html',
-                    dest: '<%%= yeoman.dist %>'
-                }]
-            }
-        },
-
-        copy: {
-            dist: {
-                files: [
-                    {
-                        expand: true,
-                        dot: true,
-                        cwd: '<%%= yeoman.client %>',
-                        dest: '<%%= yeoman.dist %>',
-                        src: [
-                            '*.{ico,png,txt}',
-                            '.htaccess',
-                            'images/{,*/}*.{webp,gif}',
-                            'styles/fonts/*'
-                        ]
-                    },
-                    {
-                        expand: true,
-                        cwd: '.tmp/images',
-                        dest: '<%%= yeoman.dist %>/images',
-                        src: [
-                            'generatred/*'
-                        ]
-                    }
-                ]
-            }
-        },
-
-        bower: {
-            install: {
-                options: {
-                    install: true,
-                    copy: false,
-                    cleanBowerDir: false
-                }
-            }
-        },
-
-        mocha: {
-            tests: {
-                options: {
-                    run: true,
-                    urls: ['http://localhost:<%%= connect.options.port %>/index.html']
-                }
-            }
-        },
-
-        nodemon: {
-            dev: {
-                script: 'server.js',
-                options: {
-                    args: [],
-                    ignoredFiles: ['README.md', 'node_modules/**'],
-                    watchedExtensions: ['js'],
-                    watchedFolders: ['app', 'config'],
-                    debug: true,
-                    delayTime: 1,
-                    env: {
-                        PORT: 3000
-                    },
-                    cwd: __dirname
-                }
-            }
-        },
-
-        connect: {
+        dist: {
             options: {
-                ports: 8005,
-                hostname: 'localhost',
-            },
-            livereload: {
-                options: {
-                    middleware: function(connect) {
-                        return [
-                            lrSnippet,
-                            mountFolder(connect, '.tmp'),
-                            mountFolder(connect, yeomanConfig.client)
-                        ];
-                    }
+                middleware: function(connect) {
+                    return [
+                        mountFolder(connect, yeomanConfig.dist)
+                    ];
                 }
-            },
-            test: {
-                options: {
-                    middleware: function(connect) {
-                        return [
-                            lrSnippet,
-                            mountFolder(connect, '.tmp'),
-                            mountFolder(connect, 'test')
-                        ];
-                    }
-                }
-            },
-            dist: {
-                options: {
-                    middleware: function(connect) {
-                        return [
-                            mountFolder(connect, yeomanConfig.dist)
-                        ];
-                    }
-                }
-            }
-        },
-
-        concurrent: {
-            options: {
-                logConcurrentOutput: true
-            },
-
-            appServer: [
-                'nodemon',
-                'watch'
-            ],
-
-            clientServer: [
-                'bower',
-                'sass:server',
-            ],
-
-            dist: [
-                'sass:dist',
-                'imagemin',
-                'svgmin',
-                'htmlmin'
-            ],
-
-        },
-        
-        watch: {
-            scripts: {
-                files: [
-                    '<%%= yeoman.client %>/scripts/**',
-                    '<%%= yeoman.app %>/{,*/}*.js'
-                ],
-                tasks: ['jshint'],
-            },
-
-            styles: {
-                files: ['<%%= yeoman.client %>/styles/{,*/}*.{scss,sass}'],
-                tasks: ['sass:server']
-            },
-
-            livereload: {
-                options: {
-                    livereload: LIVERELOAD_PORT
-                },
-                files: [
-                    '<%%= yeoman.app %>/*.html',
-                    '{.tmp <%%= yeoman.app %>/styles/{,*/}*.css',
-                    '{.tmp <%%= yeoman.app %>/scripts/{,*/}*.js',
-                    '{.tmp <%%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-                ]
             }
         }
-    });
+    }
+
+    config.watch = {
+        scripts: {
+            files: [
+                '<%%= yeoman.client %>/scripts/**',
+                '<%%= yeoman.app %>/{,*/}*.js'
+            ],
+            tasks: ['jshint'],
+        },
+
+        styles: {
+            files: ['<%%= yeoman.client %>/styles/{,*/}*.{scss,sass}'],
+            tasks: ['sass:server']
+        },
+
+        livereload: {
+            options: {
+                livereload: LIVERELOAD_PORT
+            },
+            files: [
+                '<%%= yeoman.app %>/*.html',
+                '{.tmp <%%= yeoman.app %>/styles/{,*/}*.css',
+                '{.tmp <%%= yeoman.app %>/scripts/{,*/}*.js',
+                '{.tmp <%%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+            ]
+        }
+    }
+
+
+    grunt.initConfig(config);
 
 
     grunt.option('force', true);

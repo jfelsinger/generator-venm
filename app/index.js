@@ -70,8 +70,11 @@ VenmStackGenerator.prototype.app = function app() {
 };
 
 VenmStackGenerator.prototype.configfiles = function configfiles() {
-    this.template('_Gruntfile.js', 'Gruntfile.js');
     this.template('_package.json', 'package.json');
+
+    /* #grunt */
+    this.template('_Gruntfile.js', 'Gruntfile.js');
+    this.directory('grunt-configuration');
 
     /* #bower */
     this.template('_bower.json', 'bower.json');
