@@ -18,9 +18,9 @@ module.exports = {
         },
         files: [
             '<%%= yeoman.app %>/*.html',
-            '{.tmp <%%= yeoman.app %>/styles/{,*/}*.css',
-            '{.tmp <%%= yeoman.app %>/scripts/{,*/}*.js',
-            '{.tmp <%%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+            '{.tmp <%%= yeoman.client %>/styles/{,*/}*.css',
+            '{.tmp <%%= yeoman.client %>/scripts/{,*/}*.js',
+            '{.tmp <%%= yeoman.client %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
     }
 }

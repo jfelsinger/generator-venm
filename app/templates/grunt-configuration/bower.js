@@ -1,8 +1,7 @@
 module.exports = {
     install: {
         options: {
-            install: true,
-            copy: false,
+            targetDir: './client/scripts',
             cleanBowerDir: false
         }
     }

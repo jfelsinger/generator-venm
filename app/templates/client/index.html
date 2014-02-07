@@ -3,12 +3,11 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+    <meta name="description" content="">
 
     <title></title>
 
     <link rel="stylesheet" href="/styles/main.css">
-
-    <meta name="description" content="">
 
 </head>
 <body>
@@ -21,29 +20,9 @@
         </ul>
     </div>
 
-    <script src="/bower_components/vue/dist/vue.min.js"></script>
-    <script>
-        var url = 'http://localhost:3000';
-        var userList = new Vue({
-
-            el: '#UserList',
-
-            created: function() {
-                this.fetchData();
-            },
-
-            methods: {
-                fetchData: function() {
-                    var xhr = new XMLHttpRequest(),
-                        self = this;
-                    xhr.open('GET', url);
-                    xhr.onload = function() {
-                        self.users = JSON.parse(xhr.responseText);
-                    };
-                    xhr.send();
-                }
-            }
-        });
-    </script>
+    <script 
+        src="/dist/scripts/vendor/requirejs/require.js"
+        data-main="/dist/scripts/view-models/home/index" 
+    ></script>
 </body>
 </html>

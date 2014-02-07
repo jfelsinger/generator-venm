@@ -2,10 +2,28 @@
   "name": "<%= _.slugify(appName) %>",
   "version": "0.0.0",
   "dependencies": {
-      "jquery": null,
       "vue": null,
+      "jquery": null,
       "json3": null,
+      "requirejs": null,
       "es5-shim": null
+  },
+  "exportsOverride": {
+      "vue": {
+          "vendor": "dist/vue*.js"
+      },
+      "jquery": {
+          "vendor": "jquery.min.js"
+      },
+      "json3": {
+          "vendor": "**/*.js"
+      },
+      "requirejs": {
+          "vendor": "require.js"
+      },
+      "es5-shim": {
+          "vendor": "*.js"
+      }
   }
 }
 

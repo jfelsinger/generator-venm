@@ -7,6 +7,7 @@ module.exports = {
                 cwd: '<%%= yeoman.client %>',
                 dest: '<%%= yeoman.dist %>',
                 src: [
+                    'dist/',
                     '*.{ico,png,txt}',
                     '.htaccess',
                     'images/{,*/}*.{webp,gif}',

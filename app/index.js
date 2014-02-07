@@ -46,10 +46,13 @@ VenmStackGenerator.prototype.app = function app() {
     /* #client */
     this.mkdir('client');
     this.mkdir('client/styles');
+    this.mkdir('client/dist');
     this.mkdir('client/scripts');
+    this.mkdir('client/scripts/vendor');
 
     this.copy('client/index.html');
     this.copy('client/styles/main.scss');
+    this.directory('client/scripts');
 
     /* #config */
     this.mkdir('config');

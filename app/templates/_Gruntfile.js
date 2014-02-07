@@ -33,6 +33,7 @@ module.exports = function(grunt) {
     config.mocha = require('./grunt-configuration/mocha');
     config.nodemon = require('./grunt-configuration/nodemon');
     config.concurrent = require('./grunt-configuration/concurrent');
+    config.requirejs = require('./grunt-configuration/requirejs');
 
     config.connect = {
         options: {
@@ -84,6 +85,14 @@ module.exports = function(grunt) {
             tasks: ['jshint'],
         },
 
+        require: {
+            files: [
+                '<%%= yeoman.client %>/scripts/**',
+                '!<%%= yeoman.client %>/scripts/modules/**'
+            ],
+            tasks: ['requirejs:dev']
+        },
+
         styles: {
             files: ['<%%= yeoman.client %>/styles/{,*/}*.{scss,sass}'],
             tasks: ['sass:server']
@@ -118,13 +127,15 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', [
         'bower',
-        'jshint',
+        'requirejs',
+        'jshint:production',
         'buildClient'
     ]);
 
     grunt.registerTask('serve', [
         'clean:server',
         'concurrent:clientServer',
+        'requirejs:dev',
         'connect:livereload',
         'concurrent:appServer',
     ]);
@@ -132,6 +143,7 @@ module.exports = function(grunt) {
     grunt.registerTask('test', [
         'clean:server',
         'concurrent:clientTest',
+        'requirejs:dev',
         'connect:test',
         'concurrent:appServer',
         'mocha'
