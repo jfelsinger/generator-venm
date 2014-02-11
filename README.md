@@ -1,5 +1,4 @@
-# generator-venm [![Build Status](https://secure.travis-ci.org/jfelsinger/generator-venm.png?branch=master)](https://travis-ci.org/jfelsinger/generator-venm)
-[![Analytics](https://ga-beacon.appspot.com/UA-46797352-2/generator-venm/index)](https://github.com/igrigorik/ga-beacon)
+# generator-venm [![Build Status](https://secure.travis-ci.org/jfelsinger/generator-venm.png?branch=master)](https://travis-ci.org/jfelsinger/generator-venm) [![Analytics](https://ga-beacon.appspot.com/UA-46797352-2/generator-venm/index)](https://github.com/igrigorik/ga-beacon)
 
 A generator for [Yeoman](http://yeoman.io).
 
