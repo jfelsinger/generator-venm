@@ -1,46 +1,38 @@
 # generator-venm [![Build Status](https://secure.travis-ci.org/jfelsinger/generator-venm.png?branch=master)](https://travis-ci.org/jfelsinger/generator-venm) [![Analytics](https://ga-beacon.appspot.com/UA-46797352-2/generator-venm/index)](https://github.com/igrigorik/ga-beacon)
 
-A generator for [Yeoman](http://yeoman.io).
+A somewhat opinionated [Yeoman](http://yeoman.io) generator for applications built upon the VENM stack.
 
 
 ## Getting Started
 
-### What is Yeoman?
+### What is the VENM stack?
 
-Trick question. It's not a thing. It's this guy:
+The VENM stack is a full javascript stack built in the spirit of the MEAN stack, but with Vue.js as a replacement for Angular.
 
-![](http://i.imgur.com/JHaAlBJ.png)
+- Vue.js
+- Express
+- Node
+- Mongo
 
-Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
+### Install
 
-Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
-
-```
-$ npm install -g yo
-```
-
-### Yeoman Generators
-
-Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
-
-To install generator-venm from npm, run:
+You can install generator-venm with npm, the same as any node package.
 
 ```
 $ npm install -g generator-venm
 ```
 
-Finally, initiate the generator:
+This is a yeoman generator though, so if you haven't used yeoman yet, or don't have it installed you'll have to also install it too.
+
+```
+$ npm install -g yo
+```
+
+To use the generator just run the following.
 
 ```
 $ yo venm
 ```
-
-### Getting To Know Yeoman
-
-Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
-
-If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
-
 
 ## License
 
