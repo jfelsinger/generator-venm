@@ -26,11 +26,18 @@ VenmStackGenerator.prototype.askFor = function askFor() {
         {
             name: 'appName',
             message: 'What is your application\'s name?'
+        },
+        {
+            type: 'confirm',
+            name: 'useRequire',
+            message: 'Use requirejs for the front-end?',
+            default: true
         }
     ];
 
     this.prompt(prompts, function (props) {
         this.appName = props.appName;
+        this.useRequire = props.useRequire;
 
         cb();
     }.bind(this));
@@ -52,7 +59,11 @@ VenmStackGenerator.prototype.app = function app() {
 
     this.copy('client/index.html');
     this.copy('client/styles/main.scss');
-    this.directory('client/scripts');
+
+    if (this.useRequire)
+        this.directory('client/scripts');
+    else
+        this.copy('client/main.js', 'client/scripts/main.js');
 
     /* #config */
     this.mkdir('config');
