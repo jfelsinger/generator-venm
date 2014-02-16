@@ -32,8 +32,9 @@ module.exports = function(grunt) {
     config.bower = require('./grunt-configuration/bower');
     config.mocha = require('./grunt-configuration/mocha');
     config.nodemon = require('./grunt-configuration/nodemon');
-    config.concurrent = require('./grunt-configuration/concurrent');
-    config.requirejs = require('./grunt-configuration/requirejs');
+    config.concurrent = require('./grunt-configuration/concurrent');<% if (useRequire) { %>
+    config.requirejs = require('./grunt-configuration/requirejs');<% } else { %>
+    config.uglify = require('./grunt-configuration/uglify');<% } %>
 
     config.connect = {
         options: {
@@ -83,7 +84,7 @@ module.exports = function(grunt) {
                 '<%%= yeoman.app %>/{,*/}*.js'
             ],
             tasks: ['jshint'],
-        },
+        },<% if (useRequire) { %>
 
         require: {
             files: [
@@ -91,7 +92,15 @@ module.exports = function(grunt) {
                 '!<%%= yeoman.client %>/scripts/modules/**'
             ],
             tasks: ['requirejs:dev']
-        },
+        },<% } else { %>
+
+        uglify: {
+            files: [
+                '<%%= yeoman.client %>/scripts/**',
+                '!<%%= yeoman.client %>/scripts/modules/**'
+            ],
+            tasks: ['uglify:dev']
+        },<% } %>
 
         styles: {
             files: ['<%%= yeoman.client %>/styles/{,*/}*.{scss,sass}'],
@@ -126,24 +135,27 @@ module.exports = function(grunt) {
     ])
 
     grunt.registerTask('default', [
-        'bower',
-        'requirejs',
+        'bower',<% if (useRequire) { %>
+        'requirejs:production',<% } else { %>
+        'uglify:production',<% } %>
         'jshint:production',
         'buildClient'
     ]);
 
     grunt.registerTask('serve', [
         'clean:server',
-        'concurrent:clientServer',
-        'requirejs:dev',
+        'concurrent:clientServer',<% if (useRequire) { %>
+        'requirejs:dev',<% } else { %>
+        'uglify:dev',<% } %>
         'connect:livereload',
         'concurrent:appServer',
     ]);
 
     grunt.registerTask('test', [
         'clean:server',
-        'concurrent:clientTest',
-        'requirejs:dev',
+        'concurrent:clientTest',<% if (useRequire) { %>
+        'requirejs:dev',<% } else { %>
+        'uglify:dev',<% } %>
         'connect:test',
         'concurrent:appServer',
         'mocha'

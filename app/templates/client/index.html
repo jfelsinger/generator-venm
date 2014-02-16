@@ -20,9 +20,12 @@
         </ul>
     </div>
 
-    <script 
+    <% if (useRequire) { %><script 
         src="/dist/scripts/vendor/requirejs/require.js"
         data-main="/dist/scripts/view-models/home/index" 
-    ></script>
+    ></script><% } 
+    else 
+    { %><script src="/dist/scripts/vendor/vue/vue.min.js"></script>
+    <script src="/dist/scripts/main.js"></script><% } %>
 </body>
 </html>
