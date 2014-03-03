@@ -28,16 +28,30 @@ VenmStackGenerator.prototype.askFor = function askFor() {
             message: 'What is your application\'s name?'
         },
         {
-            type: 'confirm',
-            name: 'useRequire',
-            message: 'Use requirejs for the front-end?',
-            default: true
+            type: 'list',
+            name: 'moduleFramework',
+            message: 'How would you like to manage front-end modules?',
+            default: 'Browserify',
+            choices: [
+                {
+                    name: 'Browserify',
+                    value: 'browserify',
+                },
+                {
+                    name: 'RequireJS',
+                    value: 'requirejs',
+                },
+                {
+                    name: 'None',
+                    value: 'none'
+                }
+            ],
         }
     ];
 
     this.prompt(prompts, function (props) {
         this.appName = props.appName;
-        this.useRequire = props.useRequire;
+        this.moduleFramework = props.moduleFramework;
 
         cb();
     }.bind(this));
@@ -57,11 +71,11 @@ VenmStackGenerator.prototype.app = function app() {
     this.mkdir('client/scripts');
     this.mkdir('client/scripts/vendor');
 
-    this.copy('client/index.html');
+    this.template('client/index.html');
     this.copy('client/styles/main.scss');
 
-    if (this.useRequire)
-        this.directory('client/scripts');
+    if (this.moduleFramework != 'none')
+        this.directory('client/scripts/' + this.moduleFramework, 'client/scripts');
     else
         this.copy('client/main.js', 'client/scripts/main.js');
 

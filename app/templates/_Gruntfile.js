@@ -32,7 +32,8 @@ module.exports = function(grunt) {
     config.bower = require('./grunt-configuration/bower');
     config.mocha = require('./grunt-configuration/mocha');
     config.nodemon = require('./grunt-configuration/nodemon');
-    config.concurrent = require('./grunt-configuration/concurrent');<% if (useRequire) { %>
+    config.concurrent = require('./grunt-configuration/concurrent');<% if (moduleFramework === 'browserify') { %>
+    config.browserify = require('./grunt-configuration/browserify');<% } else if (moduleFramework === 'requirejs') { %>
     config.requirejs = require('./grunt-configuration/requirejs');<% } else { %>
     config.uglify = require('./grunt-configuration/uglify');<% } %>
 
@@ -84,7 +85,7 @@ module.exports = function(grunt) {
                 '<%%= yeoman.app %>/{,*/}*.js'
             ],
             tasks: ['jshint'],
-        },<% if (useRequire) { %>
+        },<% if (moduleFramework === 'requirejs') { %>
 
         require: {
             files: [
@@ -92,6 +93,14 @@ module.exports = function(grunt) {
                 '!<%%= yeoman.client %>/scripts/modules/**'
             ],
             tasks: ['requirejs:dev']
+        },<% } else if (moduleFramework === 'browserify') { %>
+
+        browserify: {
+            files: [
+                '<%%= yeoman.client %>/scripts/**',
+                '!<%%= yeoman.client%>/scripts/modules/**'
+            ],
+            tasks: ['browserify:dev']
         },<% } else { %>
 
         uglify: {
@@ -135,8 +144,9 @@ module.exports = function(grunt) {
     ])
 
     grunt.registerTask('default', [
-        'bower',<% if (useRequire) { %>
-        'requirejs:production',<% } else { %>
+        'bower',<% if (moduleFramework === 'requirejs') { %>
+        'requirejs:production',<% } else if (moduleFramework === 'browserify') { %>
+        'browserify:production',<% } else { %>
         'uglify:production',<% } %>
         'jshint:production',
         'buildClient'
@@ -144,8 +154,9 @@ module.exports = function(grunt) {
 
     grunt.registerTask('serve', [
         'clean:server',
-        'concurrent:clientServer',<% if (useRequire) { %>
-        'requirejs:dev',<% } else { %>
+        'concurrent:clientServer',<% if (moduleFramework === 'requirejs') { %>
+        'requirejs:dev',<% } else if (moduleFramework === 'browserify') { %>
+        'browserify:dev',<% } else { %>
         'uglify:dev',<% } %>
         'connect:livereload',
         'concurrent:appServer',
@@ -153,8 +164,9 @@ module.exports = function(grunt) {
 
     grunt.registerTask('test', [
         'clean:server',
-        'concurrent:clientTest',<% if (useRequire) { %>
-        'requirejs:dev',<% } else { %>
+        'concurrent:clientTest',<% if (moduleFramework === 'requirejs') { %>
+        'requirejs:dev',<% } else if (moduleFramework === 'browserify') { %>
+        'browserify:dev',<% } else { %>
         'uglify:dev',<% } %>
         'connect:test',
         'concurrent:appServer',
