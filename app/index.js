@@ -29,9 +29,25 @@ VenmStackGenerator.prototype.askFor = function askFor() {
         },
         {
             type: 'list',
+            name: 'taskRunner',
+            message: 'Which task runner do you want to use?',
+            default: 'Gulp',
+            choices: [
+                {
+                    name: 'Gulp',
+                    value: 'gulp',
+                },
+                {
+                    name: 'Grunt',
+                    value: 'grunt',
+                },
+            ],
+        },
+        {
+            type: 'list',
             name: 'moduleFramework',
             message: 'How would you like to manage front-end modules?',
-            default: 'Browserify',
+            default: 'browserify',
             choices: [
                 {
                     name: 'Browserify',
@@ -52,6 +68,7 @@ VenmStackGenerator.prototype.askFor = function askFor() {
     this.prompt(prompts, function (props) {
         this.appName = props.appName;
         this.moduleFramework = props.moduleFramework;
+        this.taskRunner = props.taskRunner;
 
         cb();
     }.bind(this));
@@ -97,12 +114,26 @@ VenmStackGenerator.prototype.app = function app() {
 
 };
 
+VenmStackGenerator.prototype.taskrunner = function taskrunner() {
+    switch (this.taskRunner) {
+
+        /* #grunt */
+        case 'grunt':
+            this.template('_Gruntfile.js', 'Gruntfile.js');
+            this.directory('grunt-configuration');
+            break;
+
+        /* #gulp */
+        case 'gulp':
+            this.template('_gulpfile.js', 'gulpfile.js');
+            // this.directory('gulp-configuration');
+            break;
+
+    }
+}
+
 VenmStackGenerator.prototype.configfiles = function configfiles() {
     this.template('_package.json', 'package.json');
-
-    /* #grunt */
-    this.template('_Gruntfile.js', 'Gruntfile.js');
-    this.directory('grunt-configuration');
 
     /* #bower */
     this.template('_bower.json', 'bower.json');
