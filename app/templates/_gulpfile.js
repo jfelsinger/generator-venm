@@ -120,6 +120,9 @@ gulp.task('watch', function() {
     // Watch client scripts
     gulp.watch(dir.client + '/scripts/{,*/}*.js', ['clientScripts']);
 
+    // Watch server scripts
+    gulp.watch(dir.app + '/{,*/}*.js', ['app']);
+
     // Watch image files
     gulp.watch(dir.client + '/images/{,*/}*.{png,jpg,jpeg}', ['images']);
 
@@ -135,11 +138,39 @@ gulp.task('client', ['clean', 'bower'], function() {
     gulp.start('styles', 'clientScripts', 'images', 'svg', 'html');
 });
 
+gulp.task('lint', function() {
+    return gulp.src([
+            'Gruntfile.js',
+            '<%%= yeoman.app %>/{,*/}*.js',
+            '<%%= yeoman.config %>/{,*/}*.js',
+            'test/{,*/}*.js'
+        ])
+        .pipe(jshint('.jshintrc'))
+        .pipe(jshint.reporter('default'))
+        .pipe(notify({ message: 'Linting task complete' }));
+});
+
+
+gulp.task('app', function() {
+    return nodemon({
+            script: 'server.js',
+            ignoredFiles: ['README.md', 'node_modules/**'],
+            watchedExtensions: ['js'],
+            watchedFolders: ['app', 'config'],
+            debug: true,
+            delayTime: 1,
+            env: {
+                PORT: 3000
+            },
+        })
+        .on('restart', ['lint']);
+});
+
 gulp.task('buildClient', function() {
 });
 
 /** Build production ready into distributable folder */
-gulp.task('default', ['connect', 'client', 'watch']);
+gulp.task('default', ['connect', 'app', 'client', 'watch']);
 
 /** Build dev ready and serve it */
 gulp.task('serve', function() {
