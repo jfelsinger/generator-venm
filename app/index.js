@@ -67,8 +67,8 @@ VenmStackGenerator.prototype.askFor = function askFor() {
 
     this.prompt(prompts, function (props) {
         this.appName = props.appName;
-        this.moduleFramework = props.moduleFramework;
         this.taskRunner = props.taskRunner;
+        this.moduleFramework = props.moduleFramework;
 
         cb();
     }.bind(this));

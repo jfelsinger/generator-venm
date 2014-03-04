@@ -20,7 +20,7 @@ module.exports = {
             expand: true, 
             cwd: './<%%= yeoman.client %>/scripts',
             src: '**/*.js',
-            dest: './<%%= yeoman.client %>/dist/scripts'
+            dest: './<%%= yeoman.dist %>/dist/scripts'
         }]
     }
 }
