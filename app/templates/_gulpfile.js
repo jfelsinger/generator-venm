@@ -90,9 +90,9 @@ gulp.task('clientScripts', function() {
 
 gulp.task('images', function() {
     return gulp.src(dir.client + '/images/{,*/}*.{png,jpg,jpeg}')
-        .pipe(cache(
+        .pipe(
             imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })
-        ))
+        )
         .pipe(gulp.dest(dir.dist + '/images/'))
 
         .pipe(connect.reload())
@@ -101,9 +101,9 @@ gulp.task('images', function() {
 
 gulp.task('svg', function() {
     return gulp.src(dir.client + '/images/{,*/}*.svg')
-        .pipe(cache(
+        .pipe(
             svgmin()
-        ))
+        )
         .pipe(gulp.dest(dir.dist + '/images/'))
 
         .pipe(connect.reload())
@@ -151,8 +151,9 @@ gulp.task('watch', function() {
 
 });
 
-gulp.task('client', ['clean', 'bower'], function() {
-    gulp.start('styles', 'clientScripts', 'images', 'svg', 'html');
+gulp.task('mocha', function() {
+    gulp.src('./test/{,*/}*.js')
+        .pipe(mocha({ reporter: 'list' }));
 });
 
 gulp.task('lint', function() {
@@ -167,8 +168,11 @@ gulp.task('lint', function() {
         .pipe(notify({ message: 'Linting task complete' }));
 });
 
-gulp.task('test', function() {
+gulp.task('client', ['clean', 'bower'], function() {
+    gulp.start('styles', 'clientScripts', 'images', 'svg', 'html');
 });
+
+gulp.task('test', ['lint', 'mocha']);
 
 gulp.task('app', function() {
     return nodemon({
@@ -182,7 +186,7 @@ gulp.task('app', function() {
                 PORT: 3000
             },
         })
-        .on('restart', ['lint']);
+        .on('restart', ['test']);
 });
 
 /** Build it all up and serve it */
