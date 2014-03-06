@@ -7,24 +7,25 @@
         "start": "node node_modules/grunt-cli/bin/grunt serve"
     },
     "dependencies": {
-        "grunt": "latest",
-        "grunt-cli": "latest",<% if (moduleFramework === 'browserify') { %>
-        "browserify": "latest",<% } %>
         "vue": "latest",
         "express": "latest",
         "mongoose": "latest",
-        "connect-mongo": "latest",
+        "connect-mongo": "latest",<% if (taskRunner === 'grunt') { %>
+        "grunt": "latest",
+        "grunt-cli": "latest",<% } else if (taskRunner === 'gulp') { %>
+        "gulp": "latest",<% } if (moduleFramework === 'browserify') { %>
+        "browserify": "latest",<% } %>
         "forever": "latest",
         "underscore": "latest",
         "async": "latest"
     },
     "devDependencies": {
-        "grunt": "latest",
         "bower": "latest",
-        "grunt-concurrent": "latest",
         "jshint-stylish": "latest",
+        "connect-livereload": "latest",<% if (taskRunner === 'grunt') { %>
+        "grunt": "latest",
         "grunt-bower-task": "latest",
-        "connect-livereload": "latest",
+        "grunt-concurrent": "latest",
         "grunt-svgmin": "latest",
         "grunt-contrib-copy": "latest",
         "grunt-contrib-clean": "latest",
@@ -41,7 +42,28 @@
         "grunt-open": "latest",
         "grunt-nodemon": "latest",
         "grunt-mocha": "latest",
-        "load-grunt-tasks": "latest"
+        "load-grunt-tasks": "latest"<% } else if (taskRunner === 'gulp') { %>
+        "gulp": "latest",
+        "gulp-bower": "latest",
+        "gulp-svgmin": "latest",<% if (moduleFramework === 'browserify') { %>
+        "gulp-browserify": "latest",<% } %>
+        "gulp-sass": "latest",
+        "gulp-autoprefixer": "latest",
+        "gulp-minify-css": "latest",
+        "gulp-jshint": "latest",
+        "gulp-uglify": "latest",
+        "gulp-connect": "latest",
+        "gulp-imagemin": "latest",
+        "gulp-htmlmin": "latest",
+        "gulp-connect": "latest",
+        "gulp-open": "latest",
+        "gulp-nodemon": "latest",
+        "gulp-rename": "latest",
+        "gulp-clean": "latest",
+        "gulp-notify": "latest",
+        "gulp-cache": "latest",
+        "gulp-livereload": "latest",
+        "gulp-mocha": "latest"<% } %>
     },
     "engines": {
         "node": ">=0.10.0"
