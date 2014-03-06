@@ -30,7 +30,7 @@ var dir = {
     dist: 'dist'
 };
 
-gulp.task('connect', connect.server({
+gulp.task('connect:dev', connect.server({
     root: [dir.client],
     livereload: true,
     port: 8005,
@@ -38,6 +38,15 @@ gulp.task('connect', connect.server({
         file: 'index.html',
     }
 }));
+
+// gulp.task('connect:production', connect.server({
+//     root: [dir.dist],
+//     livereload: true,
+//     port: 8005,
+//     open: {
+//         file: 'index.html',
+//     }
+// }));
 
 gulp.task('clean', function() {
     return gulp.src(dir.dist, {read: false})
@@ -103,9 +112,17 @@ gulp.task('svg', function() {
 
 gulp.task('html', function() {
     return gulp.src(dir.client + '/{,*/}*.{html,htm}')
-        .pipe(cache(
-            htmlmin()
-        ))
+        .pipe(
+            htmlmin({
+                removeComments: true,
+                removeCommentsFromCDATA: true,
+                collapseBooleanAttributes: true,
+                removeRedundentAttributes: true,
+                removeAttributeQuotes: true,
+                removeEmptyAttributes: true,
+                removeOptionalTags: true
+            })
+        )
         .pipe(gulp.dest(dir.dist))
 
         .pipe(connect.reload())
@@ -140,7 +157,7 @@ gulp.task('client', ['clean', 'bower'], function() {
 
 gulp.task('lint', function() {
     return gulp.src([
-            'Gruntfile.js',
+            'gulpfile.js',
             '<%%= yeoman.app %>/{,*/}*.js',
             '<%%= yeoman.config %>/{,*/}*.js',
             'test/{,*/}*.js'
@@ -150,6 +167,8 @@ gulp.task('lint', function() {
         .pipe(notify({ message: 'Linting task complete' }));
 });
 
+gulp.task('test', function() {
+});
 
 gulp.task('app', function() {
     return nodemon({
@@ -166,15 +185,8 @@ gulp.task('app', function() {
         .on('restart', ['lint']);
 });
 
-gulp.task('buildClient', function() {
-});
+/** Build it all up and serve it */
+gulp.task('default', ['connect:dev', 'app', 'client', 'watch']);
 
-/** Build production ready into distributable folder */
-gulp.task('default', ['connect', 'app', 'client', 'watch']);
-
-/** Build dev ready and serve it */
-gulp.task('serve', function() {
-});
-
-gulp.task('test', function() {
-});
+// /** Build it all up and serve the production version */
+// gulp.task('serve', ['connect:production', 'app', 'client', 'watch']);
