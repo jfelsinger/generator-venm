@@ -17,23 +17,21 @@ module.exports = function(app) {
 
     app.enable("jsonp callback");
 
-    app.configure(function() {
-        app.use(cookieParser());
-        app.use(methodOverride());
+    app.use(cookieParser());
+    app.use(methodOverride());
 
-        // express-session/mongo setup for 
-        // storing session data
-        app.use(session({
-            secret: 'VENM',
-            store: new mongoStore({
-                url: config.db,
-                collection: 'sessions'
-            })
-        }));
+    // express-session/mongo setup for 
+    // storing session data
+    app.use(session({
+        secret: 'VENM',
+        store: new mongoStore({
+            url: config.db,
+            collection: 'sessions'
+        })
+    }));
 
-        // Continue to routing, 
-        app.use(app.router);
-    });
+    // Continue to routing, 
+    require('./routes')(app);
 
     // 500 Error
     app.use(function(err, req, res, next) {

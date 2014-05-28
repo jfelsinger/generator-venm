@@ -20,7 +20,6 @@ var app = express();
 
 // Configuration
 require('./config/express')(app);
-require('./config/routes')(app);
 
 // Start the application
 var port = config.port;

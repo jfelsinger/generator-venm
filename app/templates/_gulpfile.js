@@ -19,8 +19,7 @@ var gulp = require('gulp'),
     connect = require('gulp-connect'),
     nodemon = require('gulp-nodemon'),
     open = require('gulp-open'),
-    mocha = require('gulp-mocha'),
-    livereload = require('gulp-livereload');
+    mocha = require('gulp-mocha');
 
 
 // Configuration Directories
@@ -30,14 +29,15 @@ var dir = {
     dist: 'dist'
 };
 
-gulp.task('connect:dev', connect.server({
-    root: [dir.client],
-    livereload: true,
-    port: 8005,
-    open: {
-        file: 'index.html',
-    }
-}));
+gulp.task('connect:dev', function() {
+    connect.server({
+        root: [dir.client],
+        livereload: {
+            port: LIVERELOAD_PORT
+        },
+        port: 8005
+    });
+});
 
 // gulp.task('connect:production', connect.server({
 //     root: [dir.dist],
