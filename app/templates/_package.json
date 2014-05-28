@@ -47,7 +47,7 @@
         "grunt-nodemon": "latest",
         "grunt-mocha": "latest",
         "load-grunt-tasks": "latest"<% } else if (taskRunner === 'gulp') { %>
-        "gulp": "latest",
+        "gulp": "^3.6.2",
         "gulp-bower": "latest",
         "gulp-svgmin": "latest",<% if (moduleFramework === 'browserify') { %>
         "gulp-browserify": "latest",<% } %>
