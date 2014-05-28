@@ -8,19 +8,23 @@
     },
     "dependencies": {
         "vue": "latest",
-        "express": "latest",
-        "mongoose": "latest",
+        "express": "^4.3.1",
+        "express-session": "^1.2.1",
+        "cookie-parser": "^1.1.0",
+        "method-override": "^1.0.2",
+        "morgan": "^1.1.1",
+        "mongoose": "^3.8.11",
         "connect-mongo": "latest",<% if (taskRunner === 'grunt') { %>
         "grunt": "latest",
         "grunt-cli": "latest",<% } else if (taskRunner === 'gulp') { %>
-        "gulp": "latest",<% } if (moduleFramework === 'browserify') { %>
-        "browserify": "latest",<% } %>
+        "gulp": "^3.6.2",<% } if (moduleFramework === 'browserify') { %>
+        "browserify": "^4.1.6",<% } %>
         "forever": "latest",
-        "underscore": "latest",
+        "underscore": "^1.6.0",
         "async": "latest"
     },
     "devDependencies": {
-        "bower": "latest",
+        "bower": "^1.3.3",
         "jshint-stylish": "latest",
         "connect-livereload": "latest",<% if (taskRunner === 'grunt') { %>
         "grunt": "latest",
