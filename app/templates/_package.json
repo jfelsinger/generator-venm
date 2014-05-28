@@ -60,13 +60,10 @@
         "gulp-imagemin": "latest",
         "gulp-htmlmin": "latest",
         "gulp-connect": "latest",
-        "gulp-open": "latest",
         "gulp-nodemon": "latest",
-        "gulp-rename": "latest",
         "gulp-clean": "latest",
         "gulp-notify": "latest",
         "gulp-cache": "latest",
-        "gulp-livereload": "latest",
         "gulp-mocha": "latest"<% } %>
     },
     "engines": {

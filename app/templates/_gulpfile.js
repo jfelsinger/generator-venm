@@ -12,13 +12,10 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     svgmin = require('gulp-svgmin'),
     htmlmin = require('gulp-htmlmin'),
-    rename = require('gulp-rename'),
     clean = require('gulp-clean'),
     notify = require('gulp-notify'),
-    cache = require('gulp-cache'),
     connect = require('gulp-connect'),
     nodemon = require('gulp-nodemon'),
-    open = require('gulp-open'),
     mocha = require('gulp-mocha');
 
 
