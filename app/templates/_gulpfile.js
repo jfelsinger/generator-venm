@@ -126,7 +126,7 @@ gulp.task('html', function() {
         .pipe(notify({ message: 'HTML task complete' }));
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', ['app', 'client'], function() {
 
     // Watch styles
     gulp.watch(dir.client + '/styles/{,*/}*.{sass,scss}', ['styles']);
@@ -192,7 +192,7 @@ gulp.task('app', function() {
 });
 
 /** Build it all up and serve it */
-gulp.task('default', ['connect:dev', 'app', 'client', 'watch']);
+gulp.task('default', ['connect:dev', 'watch']);
 
 // /** Build it all up and serve the production version */
 // gulp.task('serve', ['connect:production', 'app', 'client', 'watch']);
