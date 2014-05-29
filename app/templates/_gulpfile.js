@@ -174,9 +174,14 @@ gulp.task('test', ['lint', 'mocha']);
 gulp.task('app', function() {
     return nodemon({
             script: 'server.js',
-            ignoredFiles: ['README.md', 'node_modules/**'],
+            ignore: [
+                'README.md', 
+                'node_modules/**',
+                dir.client,
+                dir.dist
+            ],
             watchedExtensions: ['js'],
-            watchedFolders: ['app', 'config'],
+            watchedFolders: [dir.app, 'config'],
             debug: true,
             delayTime: 1,
             env: {
