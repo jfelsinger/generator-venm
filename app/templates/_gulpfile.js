@@ -135,7 +135,7 @@ gulp.task('watch', ['app', 'client'], function() {
     gulp.watch(dir.client + '/scripts/{,*/}*.js', ['clientScripts']);
 
     // Watch server scripts
-    gulp.watch(dir.app + '/{,*/}*.js', ['app']);
+    gulp.watch(dir.app + '/{,*/}*.js', ['app-restart']);
 
     // Watch image files
     gulp.watch(dir.client + '/images/{,*/}*.{png,jpg,jpeg}', ['images']);
@@ -189,6 +189,11 @@ gulp.task('app', function() {
             },
         })
         .on('restart', ['test']);
+});
+
+// Restart the app server
+gulp.task('app-restart', function() {
+    nodemon.emit('restart');
 });
 
 /** Build it all up and serve it */
