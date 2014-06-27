@@ -1,0 +1,55 @@
+/*-------------------------------------*\
+    GLOBAL
+\*-------------------------------------*/
+
+/**
+ * Global 
+ * 
+ * General site-wide things
+ * 
+ **
+ * 
+ * 
+ */ 
+
+$base-font-size: 16px;
+$base-line-height: 1.618;
+$max-site-width: 960px;
+
+$unit: $base-font-size * $base-line-height;
+
+@function unit($ratio: 1) {
+    @return $unit * $ratio;
+}
+
+
+* { @include box-sizing(border-box); }
+
+ 
+body {
+    color: $c-text;
+    font-family: $f-body;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    text-align: center;
+    padding: 0;
+    background: $c-body;
+    overflow-x: hidden;
+}
+
+    %wrapper {
+        text-align: left;
+        max-width: $max-site-width;
+    }
+        .wrapper { @extend %wrapper; }
+
+    %scroll-fix {
+        width: 100%;
+        overflow: hidden;
+    }
+        .scroll-fix { @extend %scroll-fix; }
+
+    %one-line {
+        margin-bottom: 0;
+    }
+        .one-line { @extend %scroll-fix; }

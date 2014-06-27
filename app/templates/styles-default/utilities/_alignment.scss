@@ -1,0 +1,94 @@
+/*-------------------------------------*\
+    ALIGNMENT
+\*-------------------------------------*/
+
+/**
+ * Alignment 
+ * 
+ * Change the alignment of elements, this
+ * includes text-alignment, floats, and
+ * clearing
+ *
+ **
+ * Base
+ *  - clears
+ *  - text-align
+ *  - floats
+ * 
+ * Implementation
+ *  - clears
+ *  - text-align
+ *  - floats
+ * 
+    
+ * 
+ */ 
+
+
+
+/*-------------------------------------*\
+    Base
+\*-------------------------------------*/
+
+/*---   Clears   ---*/
+
+@mixin clearfix {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+%clear        { clear: both;   }
+%clear-left   { clear: left;   }
+%clear-right  { clear: left;   }
+%clear-fix { @include clearfix; }
+
+
+
+/*---   Text Align   ---*/
+
+%align-left   { text-align: left;   }
+%align-center { text-align: center; }
+%align-right  { text-align: right;  }
+
+
+
+/*---   Floats   ---*/
+
+%float-left   { float: left;   }
+%float-right  { float: left;   }
+
+
+
+/*-------------------------------------*\
+    Implementation
+\*-------------------------------------*/
+
+/*---   Clears   ---*/
+
+.clear        { @extend %clear;       }
+.clear-left   { @extend %clear-left;  }
+.clear-right  { @extend %clear-right; }
+.clear-fix    { @extend %clear-fix;   }
+
+
+
+/*---   Text Align   ---*/
+
+.align-left   { @extend %align-left;   }
+.align-center { @extend %align-center; }
+.align-right  { @extend %align-right;  }
+
+
+
+/*---   Floats   ---*/
+
+.float-left   { @extend %align-left;  }
+.float-right  { @extend %align-right; }
+
+
+
+
+

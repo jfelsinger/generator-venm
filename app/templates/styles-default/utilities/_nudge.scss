@@ -1,0 +1,53 @@
+/*-------------------------------------*\
+    NUDGE
+\*-------------------------------------*/
+
+/**
+ * Nudge
+ * 
+ * Styles for adding margins to elements
+ * 
+ **
+ * Base
+ * Implementation
+ * 
+ */ 
+ 
+
+
+/*-------------------------------------*\
+    Base
+\*-------------------------------------*/
+
+%nudge--top    { margin-top:     unit(); }
+%nudge--right  { margin-right:   unit(); }
+%nudge--bottom { margin-bottom:  unit(); }
+%nudge--left   { margin-left:    unit(); }
+ 
+%nudge-half--top    { margin-top:     unit(.5); }
+%nudge-half--right  { margin-right:   unit(.5); }
+%nudge-half--bottom { margin-bottom:  unit(.5); }
+%nudge-half--left   { margin-left:    unit(.5); }
+
+
+
+
+
+/*-------------------------------------*\
+    Implementation
+\*-------------------------------------*/
+
+.nudge--top    { @extend %nudge--top;       }
+.nudge--right  { @extend %nudge--right;     }
+.nudge--bottom { @extend %nudge--bottom;    }
+.nudge--left   { @extend %nudge--left;      }
+
+.nudge-half--top    { @extend %nudge-half--top;     }
+.nudge-half--right  { @extend %nudge-half--right;   }
+.nudge-half--bottom { @extend %nudge-half--bottom;  }
+.nudge-half--left   { @extend %nudge-half--left;    }
+
+
+
+
+
