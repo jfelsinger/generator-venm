@@ -4,6 +4,8 @@ deploy:
     secure: caiz3hBJotU644WfUyPyWZPXGPbIyGNiZnRiVNRbAWEH7mY/0ZXrntxnowFT9eduPK5doFSQUsruLgTK0bvvDRn+gRSrRtjCFgadcWmUNjGUrFTA34jiBBDDIKQu29V29qqptC7Wg6jfOkOdH4fpvrDTEe8qe8EGSGZHLJ/pnpM=
   email: jffelsinger@gmail.com
   provider: npm
+  on:
+    tags: true
 node_js:
 - '0.10'
 before_install:
