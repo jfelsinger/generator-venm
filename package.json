@@ -1,6 +1,6 @@
 {
   "name": "generator-venm",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "description": "A generator for Yeoman for a VENM stack",
   "keywords": [
     "yeoman-generator",
