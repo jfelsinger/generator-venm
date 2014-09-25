@@ -4,7 +4,7 @@ var LIVERELOAD_PORT = 4500;
 var gulp = require('gulp'),
     bower = require('gulp-bower'),
     browserify = require('gulp-browserify'),
-    sass = require('gulp-sass'),
+    compass = require('gulp-compaass'),
     autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
     jshint = require('gulp-jshint'),
@@ -55,7 +55,7 @@ gulp.task('bower', function() {
         .pipe(gulp.dest(dir.client + '/scripts/vendor'));
 });
 
-gulp.task('bower-styles', function(0 {
+gulp.task('bower-styles', function() {
     return bower({
         cwd: './client/styles'
     })
@@ -63,7 +63,12 @@ gulp.task('bower-styles', function(0 {
 
 gulp.task('styles', ['bower-styles'], function() {
     return gulp.src(dir.client + '/styles/*.{scss,sass}')
-        .pipe(sass({style: 'expanded'}))
+        .pipe(compass({
+            style: 'expanded',
+            css: dir.client + '/styles',
+            sass: dir.client + '/styles',
+            require: []
+        }))
         .pipe(autoprefixer())
         .pipe(gulp.dest(dir.client + '/styles'))
 

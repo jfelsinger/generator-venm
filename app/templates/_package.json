@@ -33,7 +33,7 @@
         "grunt-svgmin": "latest",
         "grunt-contrib-copy": "latest",
         "grunt-contrib-clean": "latest",
-        "grunt-contrib-sass": "latest",
+        "grunt-contrib-compass": "latest",
         "grunt-contrib-watch": "latest",<% if (moduleFramework === 'requirejs') { %>
         "grunt-contrib-requirejs": "latest",<% } else if (moduleFramework === 'browserify') { %>
         "grunt-browserify": "latest",<% } %>
@@ -51,7 +51,7 @@
         "gulp-bower": "latest",
         "gulp-svgmin": "latest",<% if (moduleFramework === 'browserify') { %>
         "gulp-browserify": "latest",<% } %>
-        "gulp-sass": "latest",
+        "gulp-compass": "latest",
         "gulp-autoprefixer": "latest",
         "gulp-minify-css": "latest",
         "gulp-jshint": "latest",

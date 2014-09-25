@@ -1,29 +1,23 @@
 module.exports = {
     options: {
-        style: 'compressed'
+        outputStyle: 'compressed'
         // sourcemap: true
     },
 
     dist: {
-        files: [{
-            expand: true,
-            cwd: '<%%= yeoman.client %>/styles',
-            src: ['*.scss', '*.sass'],
-            dest: '<%%= yeoman.client %>/styles',
-            ext: '.css'
-        }]
+        options: {
+            sassDir: '<%%= yeoman.client %>/styles',
+            cssDir: '<%%= yeoman.client %>/styles',
+            specify: ['*.scss', '*.sass'],
+        },
     },
 
     server: {
         options: {
-            style: 'expanded'
+            sassDir: '<%%= yeoman.client %>/styles',
+            outputStyle: 'expanded',
+            cssDir: '<%%= yeoman.client %>/styles',
+            specify: ['*.scss', '*.sass'],
         },
-        files: [{
-            expand: true,
-            cwd: '<%%= yeoman.client %>/styles',
-            src: ['*.scss', '*.sass'],
-            dest: '<%%= yeoman.client %>/styles',
-            ext: '.css'
-        }]
     }
 }
