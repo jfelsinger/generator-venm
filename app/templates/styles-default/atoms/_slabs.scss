@@ -1,0 +1,48 @@
+/*-------------------------------------*\
+    SLABS
+\*-------------------------------------*/
+
+/**
+ * Slabs 
+ * 
+ * Simple slabs of styling that takes up a whole block of an area,
+ * 
+ **
+ * Base 
+ * Isotopes
+ * Implementation
+ * 
+    <div>
+        <div class="slab--black">
+        </div>
+    </div>
+ * 
+ */ 
+
+%slab--default { 
+    color: $c-text;
+    background: $c-body;
+}
+
+
+
+
+
+/*-------------------------------------*\
+    Isotopes
+\*-------------------------------------*/
+
+
+
+
+
+/*-------------------------------------*\
+    Implementation
+\*-------------------------------------*/
+
+.slab--default { @extend %slab--default !optional; }
+
+
+
+
+

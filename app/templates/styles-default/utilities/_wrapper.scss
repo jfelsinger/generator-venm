@@ -1,0 +1,37 @@
+/*-------------------------------------*\
+    WRAPPER
+\*-------------------------------------*/
+
+/**
+ * Wrapper 
+ * 
+ * Creates a sort of top-level, site-wide container for keeping the main
+ * elements in a site from getting to big.
+ **
+ * Base
+ * Implementation
+ *
+    
+ * 
+ */ 
+ 
+
+%wrapper {
+    text-align: left;
+    max-width: $max-site-width;
+}
+
+
+
+
+
+/*-------------------------------------*\
+    Implementation
+\*-------------------------------------*/
+
+.wrapper { @extend %wrapper; }
+
+
+
+
+

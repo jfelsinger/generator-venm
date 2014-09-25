@@ -55,7 +55,13 @@ gulp.task('bower', function() {
         .pipe(gulp.dest(dir.client + '/scripts/vendor'));
 });
 
-gulp.task('styles', function() {
+gulp.task('bower-styles', function(0 {
+    return bower({
+        cwd: './client/styles'
+    })
+});
+
+gulp.task('styles', ['bower-styles'], function() {
     return gulp.src(dir.client + '/styles/*.{scss,sass}')
         .pipe(sass({style: 'expanded'}))
         .pipe(autoprefixer())
@@ -88,8 +94,11 @@ gulp.task('clientScripts', function() {
 gulp.task('images', function() {
     return gulp.src(dir.client + '/images/{,*/}*.{png,jpg,jpeg}')
         .pipe(
-            imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })
-        )
+            imagemin({ 
+                optimizationLevel: 3, 
+                progressive: true, 
+                interlaced: true 
+            }))
         .pipe(gulp.dest(dir.dist + '/images/'))
 
         .pipe(connect.reload())
@@ -135,7 +144,7 @@ gulp.task('watch', ['app', 'client'], function() {
     gulp.watch(dir.client + '/scripts/{,*/}*.js', ['clientScripts']);
 
     // Watch server scripts
-    gulp.watch(dir.app + '/{,*/}*.js', ['app']);
+    gulp.watch(dir.app + '/{,*/}*.js', ['app-restart']);
 
     // Watch image files
     gulp.watch(dir.client + '/images/{,*/}*.{png,jpg,jpeg}', ['images']);
@@ -189,6 +198,11 @@ gulp.task('app', function() {
             },
         })
         .on('restart', ['test']);
+});
+
+// Restart the app server
+gulp.task('app-restart', function() {
+    nodemon.emit('restart');
 });
 
 /** Build it all up and serve it */

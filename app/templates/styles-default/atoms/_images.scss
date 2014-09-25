@@ -1,0 +1,50 @@
+/*-------------------------------------*\
+    IMAGES
+\*-------------------------------------*/
+
+/**
+ * Images 
+ * 
+ * 
+ * 
+ **
+ * Base 
+ * Isotopes
+ * Implementation
+ * 
+    
+ * 
+ */ 
+
+
+/* Import base.images styles from inuit
+ * https://github.com/inuitcss/base.images/blob/master/_base.images.scss */
+@import '../bower_components/inuit-images/base.images';
+
+
+%image {
+}
+
+
+
+
+
+/*-------------------------------------*\
+    Isotopes
+\*-------------------------------------*/
+
+
+
+
+
+/*-------------------------------------*\
+    Implementation
+\*-------------------------------------*/
+
+.image,
+img { @extend %image !optional; }
+
+
+
+
+

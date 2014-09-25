@@ -1,0 +1,27 @@
+{
+  "name": "scaffold-inuit",
+  "version": "0.0.0",
+  "authors": [
+    "Joel Felsinger <jffelsinger@gmail.com>"
+  ],
+  "description": "A modified sass scaffold for Inuit CSS using atomic design principles",
+  "keywords": [
+    "inuitcss",
+    "oocss",
+    "css",
+    "sass",
+    "atomic"
+  ],
+  "license": "Apache",
+  "dependencies": {
+    "inuit-page": "~0.2.1",
+    "inuit-reset": "~0.1.1",
+    "inuit-spacing": "~0.6.2",
+    "inuit-widths": "~0.3.2",
+    "inuit-images": "~0.3.2",
+    "inuit-layout": "~0.3.2",
+    "inuit-normalize": "~3.0.1",
+    "inuit-mixins": "~0.2.3",
+    "inuit-box-sizing": "~0.2.0"
+  }
+}

@@ -1,0 +1,51 @@
+/*-------------------------------------*\
+    LINKS
+\*-------------------------------------*/
+
+/**
+ * Links 
+ * 
+ * 
+ * 
+ **
+ * Base
+ * Isotopes
+ * Implementation
+ * 
+    
+ * 
+ */ 
+ 
+%link {
+
+    &:hover,
+    &:active,
+    &:focus {
+        text-decoration: underline;
+    }
+}
+
+
+
+
+
+/*-------------------------------------*\
+    Isotopes
+\*-------------------------------------*/
+
+
+
+
+
+/*-------------------------------------*\
+    Implementation
+\*-------------------------------------*/
+
+// I debate whether links should, by default, be styled as links
+// at this point in time I say no.
+%content-area a { @extend %link !optional; }
+ 
+
+
+
+

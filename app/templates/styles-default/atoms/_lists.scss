@@ -1,0 +1,208 @@
+/*-------------------------------------*\
+    LISTS
+\*-------------------------------------*/
+
+/**
+ * Lists 
+ * 
+ * 
+ **
+ * Base
+ *  - Ordered Lists
+ *  - Unordered Lists
+ *  - Definition Lists
+ * Isotopes
+ *  - Flush
+ *  - Plain
+ *  - Single-line
+ *  - Image
+ * Implementation
+ *  - Base
+ *  - Isotopes
+ * 
+    
+    <div class="content-area">
+        <ul>
+            <li><!-- ... --></li>
+        </ul>
+    </div>
+
+ * 
+ */
+
+
+/*-------------------------------------*\
+    Base
+\*-------------------------------------*/
+
+%list {
+}
+
+    %list__item {
+    }
+
+
+
+/*---   Ordered List   ---*/
+
+%list--ordered {
+    @extend %list !optional;
+
+    list-style-type: decimal;
+}
+
+    %list--ordered__item {
+        @extend %list__item !optional;
+    }
+
+
+
+/*---   Unordered List   ---*/
+
+%list--unordered {
+    @extend %list !optional;
+
+    list-style-type: disc;
+}
+
+    %list--unordered__item {
+        @extend %list__item !optional;
+    }
+
+
+
+/*---   Definition List   ---*/
+
+%list--definition {
+}
+
+    %list__term {
+        @extend %list__item !optional;
+
+        font-weight: bold;
+    }
+
+    %list__definition {
+        @extend %list__item !optional;
+    }
+
+
+
+
+
+/*-------------------------------------*\
+    Isotopes
+\*-------------------------------------*/
+
+/*---   Flush List   ---
+
+ **
+ * A list with edges flush against the aligned side
+ */
+%list--flush {
+    list-style-position: inside;
+    margin-left: 0;
+}
+
+
+
+/*---   Plain List   ---
+
+ **
+ * A plain list with styling removed
+ */
+%list--plain {
+    list-style-type: none;
+    margin-left: 0;
+}
+
+
+
+/*---   Single-line List   ---
+
+ **
+ * A list that exists as a single line
+ */
+%list--one-line {
+    @extend %list--plain;
+
+    > %list__item {
+        margin-bottom: 0;
+        display: inline;
+    }
+}
+
+
+
+/*---   Image List   ---
+
+ **
+ * A list that uses an image as the item marker
+ */
+%list--image {
+    @extend %list--plain;
+
+    // > %list__item {
+    //     paddint-left: unit();
+    //     background-position: 0, 0;
+    //     background-repeat: no-repeat;
+    // }
+}
+
+
+
+
+
+/*-------------------------------------*\
+    Implementation
+\*-------------------------------------*/
+
+/*---   Base   ---*/
+
+%content-area ul,
+.list--unordered {
+    @extend %list--unordered !optional;
+
+    > li { @extend %list--unordered__item !optional; }
+}
+
+%content-area ol,
+.list--ordered {
+    @extend %list--ordered !optional;
+
+    > li { @extend %list--ordered__item !optional; }
+}
+
+    .list__item { @extend %list__item !optional; }
+
+
+%content-area dl,
+.list--definition {
+    @extend %list--definition !optional;
+}
+
+    %content-area dt,
+    .list--definition > dt,
+    .list__term {
+        @extend %list__term !optional;
+    }
+
+    %content-area dd,
+    .list--definition > dd,
+    .list__definition {
+        @extend %list__definition !optional;
+    }
+
+
+
+/*---   Isotopes   ---*/
+
+.list--flush    { @extend %list--flush;     }
+.list--plain    { @extend %list--plain;     }
+.list--one-line { @extend %list--one-line;  }
+.list--image    { @extend %list--image;     }
+ 
+
+
+
+

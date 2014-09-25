@@ -1,0 +1,80 @@
+/*-------------------------------------*\
+    HEADINGS
+\*-------------------------------------*/
+
+/**
+ * Headings 
+ * 
+ * 
+ * 
+ **
+ * Base 
+ * Isotopes
+ * Implementation
+ * 
+    
+ * 
+ */ 
+
+%heading {
+}
+
+    %alpha {
+        @extend %heading !optional;
+
+    }
+
+    %beta {
+        @extend %heading !optional;
+
+    }
+
+    %gamma {
+        @extend %heading !optional;
+
+    }
+
+    %delta {
+        @extend %heading !optional;
+
+    }
+
+    %epsilon {
+        @extend %heading !optional;
+
+    }
+
+    %zeta {
+        @extend %heading !optional;
+
+    }
+
+
+
+
+
+/*-------------------------------------*\
+    Isotopes
+\*-------------------------------------*/
+
+
+
+
+
+/*-------------------------------------*\
+    Implementation
+\*-------------------------------------*/
+
+.heading            { @extend %heading !optional; }
+    .alpha, h1      { @extend %alpha !optional; }
+    .beta, h2       { @extend %beta !optional; }
+    .gamma, h3      { @extend %gamma !optional; }
+    .delta, h4      { @extend %delta !optional; }
+    .epsilon, h5    { @extend %epsilon !optional; }
+    .theta, h6      { @extend %theta !optional; }
+
+
+
+
+
+ 

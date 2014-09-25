@@ -1,0 +1,99 @@
+/*-------------------------------------*\
+    MAIN
+\*-------------------------------------*/
+
+/**
+ * Main.scss
+ * 
+ * This is the root style file, where everything
+ * else stems from.
+ *
+ **
+ * Contents         - You are here
+ * 
+ * Imports          - All the file imports
+ *  - utilities
+ *  - quarks
+ *  - atoms
+ *  - molecules
+ *  - pages
+ *  - shame
+ * 
+ * 
+ */ 
+ 
+
+/*-------------------------------------*\
+    Imports
+\*-------------------------------------*/
+
+
+// @import 'compass';
+// @import 'breakpoint'; // Sexy breakpoint plugin - http://breakpoint-sass.com/
+
+/* Resets */
+@import 'bower_components/inuit-normalize/generic.normalize';
+@import 'bower_components/inuit-reset/generic.reset';
+
+
+
+/*---   Quarks   ---*/
+
+@import 'quarks/breakpoints';
+@import 'quarks/colors';
+@import 'quarks/fonts';
+@import 'quarks/gradients';
+@import 'quarks/borders';
+@import 'quarks/icons';
+@import 'quarks/animations';
+
+@import 'settings';
+@import 'bower_components/inuit-defaults/settings.defaults';
+
+
+
+/*---   Utilities   ---*/
+
+@import 'bower_components/inuit-functions/tools.functions';
+@import 'bower_components/inuit-mixins/tools.mixins';
+@import 'bower_components/inuit-box-sizing/generic.box-sizing';
+@import 'bower_components/inuit-page/base.page';
+
+@import 'utilities/alignment';
+@import 'utilities/scroll-fix';
+@import 'utilities/wrapper';
+@import 'bower_components/inuit-widths/trumps.widths';
+@import 'bower_components/inuit-spacing/trumps.spacing';
+
+
+
+/*---   Atoms   ---*/
+
+@import 'atoms/type';
+@import 'atoms/buttons';
+@import 'atoms/headings';
+@import 'atoms/images';
+@import 'atoms/links';
+@import 'atoms/lists';
+@import 'atoms/selections';
+@import 'atoms/slabs';
+
+
+
+/*---   Molecules   ---*/
+
+@import 'bower_components/inuit-layout/objects.layout';
+
+
+
+/*---   Organisms   ---*/
+
+
+
+/*---   Pages   ---*/
+
+
+
+/*---   Shame   ---*/
+
+@import 'shame';

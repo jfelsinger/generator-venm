@@ -1,0 +1,63 @@
+/*-------------------------------------*\
+    TYPE
+\*-------------------------------------*/
+
+/**
+ * Type 
+ * 
+ * All typographical related elements and styles
+ * 
+ **
+ * Base 
+ * Isotopes
+ * Implementation
+ * 
+    
+ * 
+ */ 
+
+%paragraph {
+}
+
+%strong {
+}
+
+%emphasis {
+}
+
+%small {
+}
+
+%subscript {
+}
+
+%superscript {
+}
+
+
+ 
+
+
+/*-------------------------------------*\
+    Isotopes
+\*-------------------------------------*/
+
+
+
+
+
+/*-------------------------------------*\
+    Implementation
+\*-------------------------------------*/
+
+%content-area p { @extend %paragraph !optional; }
+%content-area strong { @extend %strong !optional; }
+%content-area em { @extend %emphasis !optional; }
+%content-area small { @extend %small !optional; }
+%content-area sub { @extend %subscript !optional; }
+%content-area sup { @extend %superscript !optional; }
+
+
+
+
+

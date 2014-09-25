@@ -1,0 +1,37 @@
+/*-------------------------------------*\
+    SCROLL FIX
+\*-------------------------------------*/
+
+/**
+ * Scroll Fix 
+ * 
+ * Create a container to fix issues with horizontal scrolling
+ * 
+ **
+ * Base
+ * Implementation
+ * 
+    
+ * 
+ */ 
+ 
+
+%scroll-fix {
+    width: 100%;
+    overflow: hidden;
+}
+
+
+
+
+
+/*-------------------------------------*\
+    Implementation
+\*-------------------------------------*/
+
+.scroll-fix { @extend %scroll-fix !optional; }
+
+
+
+
+
