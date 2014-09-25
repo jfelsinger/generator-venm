@@ -1,0 +1,50 @@
+/*-------------------------------------*\
+    CONTENTAREA
+\*-------------------------------------*/
+
+/**
+ * Content Area
+ * 
+ * An area where elements should behave as the textual content they 
+ * are meant to represent in a document. This is a convention to
+ * prevent the unsetting of styles on certain elements that are strongly
+ * used in layouts and should not always have default styles.
+ *
+ **
+ * Base 
+ * Isotopes
+ * Implementation
+ * 
+    <article class="content-area">
+        <ul>
+            <li>I look like a list</li>
+        </ul>
+    </article>
+ * 
+ */ 
+
+%content-area {
+}
+
+
+
+
+
+/*-------------------------------------*\
+    Isotopes
+\*-------------------------------------*/
+
+
+
+
+
+/*-------------------------------------*\
+    Implementation
+\*-------------------------------------*/
+
+.content-area { @extend %content-area !optional; }
+
+
+
+
+

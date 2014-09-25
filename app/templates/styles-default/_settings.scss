@@ -1,0 +1,46 @@
+/*-------------------------------------*\
+    Settings
+\*-------------------------------------*/
+
+/**
+ *  
+ * 
+ **
+ * Base
+ * Implementation
+ * 
+    
+ * 
+ */ 
+ 
+
+$max-site-width: 960px;
+
+$base-font-size:    16px !default;
+$base-line-height:  1.618 !default;
+
+$unit: $base-font-size * $base-line-height;
+
+@function unit($ratio: 1) {
+    @return $unit * $ratio;
+}
+
+
+/*-------------------------------------*\
+    Implementation
+\*-------------------------------------*/
+
+/*---   Inuit CSS settings   ---*/
+
+$inuit-base-font-size:      $base-font-size;
+$inuit-base-line-height:    $unit;
+$inuit-base-spacing-unit:   $unit;
+
+// Color settings taken from colors in quarks/_colors.scss
+$inuit-base-text-color:     $c-text;
+$inuit-base-text-color:     $c-body;
+
+
+
+
+

@@ -1,10 +1,11 @@
 /*-------------------------------------*\
-    BUTTONS
+    FORMS
 \*-------------------------------------*/
 
 /**
- * Buttons 
+ * Forms 
  * 
+ * Styles for forms and form-related elements.
  * 
  **
  * Base 
@@ -13,10 +14,8 @@
  * 
     
  * 
- */ 
+ */
 
-%button {
-}
 
 
 
@@ -32,8 +31,6 @@
 /*-------------------------------------*\
     Implementation
 \*-------------------------------------*/
-
-.button { @extend %button !optional; }
 
 
 

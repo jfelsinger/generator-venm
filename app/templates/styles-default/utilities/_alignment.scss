@@ -8,7 +8,6 @@
  * Change the alignment of elements, this
  * includes text-alignment, floats, and
  * clearing
- *
  **
  * Base
  *  - clears
@@ -22,6 +21,8 @@
  * 
     
  * 
+ * [note] I could seperate these out into sections, but they'd be sooo small
+ * that I feel better grouping them. :O
  */ 
 
 
@@ -30,8 +31,16 @@
     Base
 \*-------------------------------------*/
 
+%margin-bottom {
+    margin-bottom: unit();
+    margin-bottom: (unit() / $base-font-size) * 1rem;
+}
+
+
+
 /*---   Clears   ---*/
 
+/** <3 css-101.org/articles/clearfix/latest-new-clearfix-so-far.php */
 @mixin clearfix {
     &:after {
         content: "";
@@ -39,11 +48,11 @@
         clear: both;
     }
 }
+%clear-fix { @include clearfix; }
 
 %clear        { clear: both;   }
 %clear-left   { clear: left;   }
 %clear-right  { clear: left;   }
-%clear-fix { @include clearfix; }
 
 
 

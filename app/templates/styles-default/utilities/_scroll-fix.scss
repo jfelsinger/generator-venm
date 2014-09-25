@@ -1,29 +1,25 @@
 /*-------------------------------------*\
-    BUTTONS
+    SCROLL FIX
 \*-------------------------------------*/
 
 /**
- * Buttons 
+ * Scroll Fix 
  * 
+ * Create a container to fix issues with horizontal scrolling
  * 
  **
- * Base 
- * Isotopes
+ * Base
  * Implementation
  * 
     
  * 
  */ 
+ 
 
-%button {
+%scroll-fix {
+    width: 100%;
+    overflow: hidden;
 }
-
-
-
-
-/*-------------------------------------*\
-    Isotopes
-\*-------------------------------------*/
 
 
 
@@ -33,7 +29,7 @@
     Implementation
 \*-------------------------------------*/
 
-.button { @extend %button !optional; }
+.scroll-fix { @extend %scroll-fix !optional; }
 
 
 
