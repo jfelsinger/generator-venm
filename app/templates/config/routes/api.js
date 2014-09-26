@@ -1,3 +1,8 @@
+/**
+ * API
+ * Routes that manage API methods
+ */
+
 var async = require('async'),
     express = require('express');
 

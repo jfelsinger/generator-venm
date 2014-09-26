@@ -1,3 +1,8 @@
+/**
+ * Static
+ * Routes that manage static methods
+ */
+
 var express = require('express'),
     config = require('../config');
 

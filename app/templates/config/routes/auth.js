@@ -1,3 +1,8 @@
+/**
+ * Auth
+ * Routes that manage auth methods
+ */
+
 var async = require('async'),
     express = require('express'),
     config = require('../config');
