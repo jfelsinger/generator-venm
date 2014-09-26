@@ -24,7 +24,7 @@ module.exports = function(app) {
     app.use(methodOverride());
 
     // Setup passport
-    require('./passport')(passport);
+    require('./middlewares/passport')(passport);
     app.use(passport.initialize());
     app.use(passport.session());
 
