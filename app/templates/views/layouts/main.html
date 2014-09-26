@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+    <meta name="description" content="">
+
+    <title></title>
+
+    <link rel="stylesheet" href="/styles/main.css">
+
+</head>
+
+<body>
+
+    {{> header }}
+
+    {{{ body }}}
+
+    {{> footer }}
+
+    <% if (moduleFramework === 'requirejs') { %><script 
+        src="/dist/scripts/vendor/requirejs/require.js"
+        data-main="/dist/scripts/view-models/home/index" 
+    ></script><% } 
+    else if (moduleFramework === 'browserify') 
+    { %><script src="/dist/scripts/main.js"></script><% } 
+    else 
+    { %><script src="/dist/scripts/vendor/vue/vue.min.js"></script>
+    <script src="/dist/scripts/main.js"></script><% 
+    } %>
+</body>
+</html>
+

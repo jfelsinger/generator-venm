@@ -6,7 +6,15 @@ var mongoose = require('mongoose'),
     _ = require('underscore');
 
 exports.render = function(req, res) {
-    res.header('Access-Control-Allow-Origin', '*');
+    'use strict';
+
+    var data = {
+        vm: 'index',
+        user: req.user
+    };
+    
+    res.render('index.html', data);
+
     res.json([
         { username: 'uName1' },
         { username: 'uName2' },
