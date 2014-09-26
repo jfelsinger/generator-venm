@@ -1,29 +1,30 @@
 var async = require('async'),
-    config = require('./config');
+    express = require('express'),
+    config = require('../config');
 
 module.exports = function(app) {
     // Set opinionated defaults if the config has none for itself
     var defaultController = config.defaultController || 'index';
-    var defaultMethod = config.defaultControllerMethod || 'render';
+    var defaultMethod = config.defaultMethod || 'render';
+    var router = express.Router();
 
     // Setup basic routes for requests that should be directed
     // to a particular controller & method.
-    app.get('/', routeToController);
-    app.get('/:page', routeToController);
-    app.get('/:page/:method', routeToController);
+    router.get('/', routeToController);
+    router.get('/:page', routeToController);
+    router.get('/:page/:id', routeToController);
+    router.get('/:page/:method/:id', routeToController);
 
     // catch-all to include any extra data that a controller
     // might be expecting.
     //
     // req.params[0] starts at the first of the wild-cart params
-    app.get('/:page/:method/*', routeToController);
-
     function routeToController(req, res, next) {
         var page = req.params.page || defaultController || '',
-            method = req.params.method || '';
+            method = req.params.id || req.params.method || '';
 
         try {
-            var controller = require('../app/controllers/' + page);
+            var controller = require('../../app/controllers/' + page);
         } catch(e) {
             console.log('Bad request: ' + page);
             return next();
@@ -52,17 +53,17 @@ module.exports = function(app) {
                     console.log(
                         'Bad request: ' + page 
                         + ' doesn\' implement default method `' + defaultMethod 
-                        + '`'
-                    );
+                        + '`');
                     next(); // there is no  method, :(
                 }
-
             }
-
         } else {
             // it was all a lie
             console.log('Bad request: ' + page);
             next();
         }
     }
+
+    // Register routes
+    app.use('/', router);
 };
