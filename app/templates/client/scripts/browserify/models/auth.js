@@ -7,8 +7,7 @@
 'use strict';
 /* jslint browser: true */
 
-var config = require('../config'),
-    lib = require('../lib'),
+var lib = require('../lib'),     // I have no idea why this shouldn't be '../lib'
     request = require('superagent');
 var url = 'http://localhost:3000/';
 

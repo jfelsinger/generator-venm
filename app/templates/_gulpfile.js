@@ -12,9 +12,8 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     svgmin = require('gulp-svgmin'),
     htmlmin = require('gulp-htmlmin'),
-    clean = require('gulp-clean'),
+    rimraf = require('gulp-rimraf'),
     notify = require('gulp-notify'),
-    connect = require('gulp-connect'),
     nodemon = require('gulp-nodemon'),
     mocha = require('gulp-mocha');
 
@@ -26,28 +25,9 @@ var dir = {
     dist: 'dist'
 };
 
-gulp.task('connect:dev', function() {
-    connect.server({
-        root: [dir.client],
-        livereload: {
-            port: LIVERELOAD_PORT
-        },
-        port: 8005
-    });
-});
-
-// gulp.task('connect:production', connect.server({
-//     root: [dir.dist],
-//     livereload: true,
-//     port: 8005,
-//     open: {
-//         file: 'index.html',
-//     }
-// }));
-
-gulp.task('clean', function() {
+gulp.task('rimraf', function(cb) {
     return gulp.src(dir.dist, {read: false})
-        .pipe(clean());
+        .pipe(rimraf());
 });
 
 gulp.task('bower', function() {
@@ -75,14 +55,16 @@ gulp.task('styles', ['bower-styles'], function() {
         .pipe(minifycss())
         .pipe(gulp.dest(dir.dist + '/styles'))
 
-        .pipe(connect.reload())
         .pipe(notify({message: 'Styles task complete' }));
 });
 
 gulp.task('clientScripts', function() {
     return gulp.src([
-            dir.client + '/scripts/{,*/}*.js',
-            '!' + dir.client + '/scripts/vendor/*',
+            dir.client + '/scripts/**/*.js',
+            '!' + dir.client + '/scripts/models/**',
+            '!' + dir.client + '/scripts/view-models/**',
+            '!' + dir.client + '/scripts/lib/**',
+            '!' + dir.client + '/scripts/vendor/**',
         ])
         .pipe(jshint('.jshintrc'))
         .pipe(jshint.reporter('default'))
@@ -92,7 +74,6 @@ gulp.task('clientScripts', function() {
         .pipe(uglify())
         .pipe(gulp.dest(dir.dist + '/scripts'))
 
-        .pipe(connect.reload())
         .pipe(notify({ message: 'Client scripts task complete' }));
 });
 
@@ -106,7 +87,6 @@ gulp.task('images', function() {
             }))
         .pipe(gulp.dest(dir.dist + '/images/'))
 
-        .pipe(connect.reload())
         .pipe(notify({ message: 'Images task complete' }));
 });
 
@@ -117,7 +97,6 @@ gulp.task('svg', function() {
         )
         .pipe(gulp.dest(dir.dist + '/images/'))
 
-        .pipe(connect.reload())
         .pipe(notify({ message: 'SVG task complete' }));
 });
 
@@ -136,7 +115,6 @@ gulp.task('html', function() {
         )
         .pipe(gulp.dest(dir.dist))
 
-        .pipe(connect.reload())
         .pipe(notify({ message: 'HTML task complete' }));
 });
 
@@ -179,7 +157,7 @@ gulp.task('lint', function() {
         .pipe(notify({ message: 'Linting task complete' }));
 });
 
-gulp.task('client', ['clean', 'bower'], function() {
+gulp.task('client', ['rimraf', 'bower'], function() {
     gulp.start('styles', 'clientScripts', 'images', 'svg', 'html');
 });
 
@@ -211,7 +189,7 @@ gulp.task('app-restart', function() {
 });
 
 /** Build it all up and serve it */
-gulp.task('default', ['connect:dev', 'watch']);
+gulp.task('default', ['watch']);
 
 // /** Build it all up and serve the production version */
-// gulp.task('serve', ['connect:production', 'app', 'client', 'watch']);
+// gulp.task('serve', ['app', 'client', 'watch']);

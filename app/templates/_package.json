@@ -10,6 +10,9 @@
         "vue": "latest",
         "express": "^4.3.1",
         "express-session": "^1.2.1",
+        "express-layout": "^0.1.0",
+        "hbs": "^2.7.0",
+        "swag": "^0.7.0",
         "cookie-parser": "^1.1.0",
         "method-override": "^1.0.2",
         "morgan": "^1.1.1",
@@ -20,13 +23,20 @@
         "gulp": "^3.6.2",<% } if (moduleFramework === 'browserify') { %>
         "browserify": "^4.1.6",<% } %>
         "forever": "latest",
+        "passport": "^0.2.0",
+        "passport-github": "^0.1.5",
+        "passport-google": "^0.3.0",
+        "passport-facebook": "^1.0.3",
+        "passport-local": "^1.0.0",
+        "passport-twitter": "^1.0.2",
         "underscore": "^1.6.0",
+        "superagent": "latest",
+        "body-parser": "^1.9.0",
         "async": "latest"
     },
     "devDependencies": {
         "bower": "^1.3.3",
-        "jshint-stylish": "latest",
-        "connect-livereload": "latest",<% if (taskRunner === 'grunt') { %>
+        "jshint-stylish": "latest",<% if (taskRunner === 'grunt') { %>
         "grunt": "latest",
         "grunt-bower-task": "latest",
         "grunt-concurrent": "latest",
@@ -46,6 +56,7 @@
         "grunt-open": "latest",
         "grunt-nodemon": "latest",
         "grunt-mocha": "latest",
+        "connect-livereload": "latest",
         "load-grunt-tasks": "latest"<% } else if (taskRunner === 'gulp') { %>
         "gulp": "^3.6.2",
         "gulp-bower": "latest",
@@ -61,7 +72,7 @@
         "gulp-htmlmin": "latest",
         "gulp-connect": "latest",
         "gulp-nodemon": "latest",
-        "gulp-clean": "latest",
+        "gulp-rimraf": "latest",
         "gulp-notify": "latest",
         "gulp-cache": "latest",
         "gulp-mocha": "latest"<% } %>

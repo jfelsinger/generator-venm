@@ -9,18 +9,18 @@ module.exports = {
     db: process.env.MONGOHQ_URL,
     auth: {
         twitter: {
-            consumerKey: '',
-            consumerSecret: ''
+            consumerKey: ' ',
+            consumerSecret: ' '
         },
         github: {
-            clientId: '',
-            clientSecret: ''
+            clientId: ' ',
+            clientSecret: ' '
         },
         google: {
         },
         facebook: {
-            clientId: '',
-            clientSecret: ''
+            clientId: ' ',
+            clientSecret: ' '
         },
 
     }

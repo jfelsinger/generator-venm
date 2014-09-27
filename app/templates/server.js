@@ -1,8 +1,6 @@
-/**
- * Module Dependencies
- */
+// Module Dependencies
 var express = require('express'),
-    fs = require('fs');
+    walk = require('./lib/walk');
 
 // Load configurations
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'dev',
@@ -14,7 +12,7 @@ var db = mongoose.connect(config.db);
 
 // Load models
 var models_path = __dirname + '/app/models';
-walk(models_path);
+walk(models_path, require);
 
 var app = express();
 
@@ -28,19 +26,3 @@ console.log('Express application started on port ' + port);
 
 // Show yourself
 exports = module.exports = app;
-
-function walk(path) {
-    fs.readdirSync(path).forEach(function(file) {
-        var newPath = path + '/' + file
-            stat = fs.statSync(newPath);
-
-        // Require model files
-        if (stat.isFile()) {
-            if (/(.*\.(js|coffee)/.test(file)) {
-                require(newPath);
-            }
-        } else if (stat.isDirectory()) {
-            walk(newPath);
-        }
-    });
-}

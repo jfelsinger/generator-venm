@@ -6,7 +6,7 @@
 var session = require('express-session'),
     mongoStore = require('connect-mongo')(session);
 
-var config = require('./config');
+var config = require('../config');
 
 module.exports = function(app) {
 

@@ -27,29 +27,29 @@ module.exports = function(app, passport) {
     });
 
     // Register routes for google authentication
-    router.use('/google', passport.authentication('google'));
-    router.use('/google/callback', passport.authenticate('google' {
+    router.use('/google', passport.authenticate('google'));
+    router.use('/google/callback', passport.authenticate('google', {
         successRedirect: '/',
         failureRedirect: '/user/login'
     }));
 
     // Register routes for facebook authentication
-    router.use('/facebook', passport.authentication('facebook'));
-    router.use('/facebook/callback', passport.authenticate('facebook' {
+    router.use('/facebook', passport.authenticate('facebook'));
+    router.use('/facebook/callback', passport.authenticate('facebook', {
         successRedirect: '/',
         failureRedirect: '/user/login'
     }));
 
     // Register routes for twitter authentication
-    router.use('/twitter', passport.authentication('twitter'));
-    router.use('/twitter/callback', passport.authenticate('twitter' {
+    router.use('/twitter', passport.authenticate('twitter'));
+    router.use('/twitter/callback', passport.authenticate('twitter', {
         successRedirect: '/',
         failureRedirect: '/user/login'
     }));
 
     // Register routes for github authentication
-    router.use('/github', passport.authentication('github'));
-    router.use('/github/callback', passport.authenticate('github' {
+    router.use('/github', passport.authenticate('github'));
+    router.use('/github/callback', passport.authenticate('github', {
         successRedirect: '/',
         failureRedirect: '/user/login'
     }));

@@ -10,6 +10,9 @@ module.exports = function() {
     /* #views */
     this.directory('views');
 
+    /* #lib */
+    this.directory('lib');
+
     /* #client */
     this.mkdir('client');
     this.mkdir('client/styles');

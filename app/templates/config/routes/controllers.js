@@ -31,7 +31,7 @@ module.exports = function(app) {
         try {
             var controller = require('../../app/controllers/' + page);
         } catch(e) {
-            console.log('Bad request: ' + page);
+            console.log('1. Bad request: ' + page);
             return next();
         }
 
@@ -45,7 +45,7 @@ module.exports = function(app) {
                 if (controller[method]) {
                     controller[method](req, res);
                 } else {
-                    console.log('Bad request: ' + page + '/' + method);
+                    console.log('2. Bad request: ' + page + '/' + method);
                     next();
                 }
 
@@ -64,7 +64,7 @@ module.exports = function(app) {
             }
         } else {
             // it was all a lie
-            console.log('Bad request: ' + page);
+            console.log('3. Bad request: ' + page);
             next();
         }
     }

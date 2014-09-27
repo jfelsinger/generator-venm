@@ -1,5 +1,5 @@
 /**
- * Routes
+ * Routing
  * Setup request routing
  */
 

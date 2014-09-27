@@ -2,7 +2,7 @@
  * Passport
  * Sets up passport authentication management middleware
  */
-var config = require('./config'),
+var config = require('../config'),
     mongoose = require('mongoose'),
     User = mongoose.model('User'),
     authorization = require('./authorization');
@@ -37,7 +37,7 @@ module.exports = function(passport) {
         usernameField: 'email',
         passwordField: 'password',
         passReqToCallback: true
-    }, authentication.localLogin));
+    }, authorization.localLogin));
 
     passport.use(new TwitterStrategy({
         consumerKey: config.auth.twitter.consumerKey,

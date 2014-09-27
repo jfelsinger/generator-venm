@@ -86,7 +86,7 @@ module.exports.google = function(identifier, profile, done) {
 /**
  * Autenticates a github user, or creates a new user if one doesn't exist
  */
-modeule.exports.github = function(accessToken, refreshToken, profile, done) {
+module.exports.github = function(accessToken, refreshToken, profile, done) {
     findAutenticatedUser('github', profile, function(newUser) {
         newUser.github.token = accessToken;
         newUser.github.refreshToken = refreshToken;

@@ -1,14 +1,12 @@
 /**
  * lib.js
  *
- * Global function and values that can be used throughout the application
+ * Client function and values that can be used
+ * note: global functions should be kept in the `lib` folder
  */
 
-'use strict'
+'use strict';
 /* jslint browser: true */
-
-var config = require('./config'),
-    request = require('superagent');
 
 var parameters = window.location.pathname.split('/').slice(1);
 
@@ -27,21 +25,5 @@ module.exports.getQueryValue = function getQueryValue(name) {
     }
 };
 
-/**
- * public void respond([func] cb)
- *
- * Run a cb if the response was a success
- */
-module.exports.respond(cb) {
-    return function(err, res) {
-        if (err) return console.log(err);
-
-        if (res.ok) {
-            cb(err, res);
-        } else {
-            console.log(res);
-        }
-    };
-}
-
-module.exports.parameters = parameters
+module.exports.respond = require('../../lib/respond');
+module.exports.parameters = parameters;
