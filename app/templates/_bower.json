@@ -4,8 +4,7 @@
   "dependencies": {
       "vue": null,
       "jquery": null,
-      "json3": null,<% if (moduleFramework === 'requirejs') { %>
-      "requirejs": null,<% } %>
+      "json3": null,
       "es5-shim": null
   },
   "exportsOverride": {
@@ -17,10 +16,7 @@
       },
       "json3": {
           "vendor": "**/*.js"
-      },<% if (moduleFramework === 'requirejs') { %>
-      "requirejs": {
-          "vendor": "require.js"
-      },<% } %>
+      },
       "es5-shim": {
           "vendor": "*.js"
       }

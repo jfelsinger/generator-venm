@@ -5,18 +5,11 @@
 
 module.exports = function() {
     switch (this.taskRunner) {
-
-        /* #grunt */
-        case 'grunt':
-            this.template('_Gruntfile.js', 'Gruntfile.js');
-            this.directory('grunt-configuration');
-            break;
-
         /* #gulp */
         case 'gulp':
+        default:
             this.template('_gulpfile.js', 'gulpfile.js');
             // this.directory('gulp-configuration');
             break;
-
     }
 };

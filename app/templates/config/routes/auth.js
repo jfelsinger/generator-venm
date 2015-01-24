@@ -1,3 +1,4 @@
+'use strict';
 /**
  * Auth
  * Routes that manage auth methods

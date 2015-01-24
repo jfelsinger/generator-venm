@@ -9,6 +9,6 @@
     "staticLocation": "client",
     "assetsLocation": "client",
     "app": {
-        "name": "<%= appName %> - Dev"
+        "name": "<%= appName %> - Local"
     }
 }

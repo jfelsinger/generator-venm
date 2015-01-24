@@ -1,5 +1,4 @@
 'use strict';
-var LIVERELOAD_PORT = 4500;
 
 var gulp = require('gulp'),
     bower = require('gulp-bower'),
@@ -11,9 +10,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     imagemin = require('gulp-imagemin'),
     svgmin = require('gulp-svgmin'),
-    htmlmin = require('gulp-htmlmin'),
     rimraf = require('gulp-rimraf'),
-    notify = require('gulp-notify'),
     nodemon = require('gulp-nodemon'),
     mocha = require('gulp-mocha');
 
@@ -25,7 +22,7 @@ var dir = {
     dist: 'dist'
 };
 
-gulp.task('rimraf', function(cb) {
+gulp.task('rimraf', function() {
     return gulp.src(dir.dist, {read: false})
         .pipe(rimraf());
 });
@@ -38,127 +35,114 @@ gulp.task('bower', function() {
 gulp.task('bower-styles', function() {
     return bower({
         cwd: './client/styles'
-    })
+    });
 });
 
-gulp.task('styles', ['bower-styles'], function() {
+gulp.task('styles-sass', ['bower-styles'], function() {
     return gulp.src(dir.client + '/styles/*.{scss,sass}')
         .pipe(compass({
             style: 'expanded',
-            css: dir.client + '/styles',
+            css: dir.client + '/css',
             sass: dir.client + '/styles',
             require: []
         }))
         .pipe(autoprefixer())
-        .pipe(gulp.dest(dir.client + '/styles'))
-
-        .pipe(minifycss())
-        .pipe(gulp.dest(dir.dist + '/styles'))
-
-        .pipe(notify({message: 'Styles task complete' }));
+        .pipe(gulp.dest(dir.dist + '/css'));
 });
 
-gulp.task('clientScripts', function() {
+gulp.task('styles', ['styles-sass'], function() {
+    return gulp.src(dir.client + '/css/**')
+        .pipe(minifycss())
+        .pipe(gulp.dest(dir.dist + '/css'));
+});
+
+gulp.task('scripts-browserify', function() {
     return gulp.src([
             dir.client + '/scripts/**/*.js',
             '!' + dir.client + '/scripts/models/**',
             '!' + dir.client + '/scripts/view-models/**',
             '!' + dir.client + '/scripts/lib/**',
             '!' + dir.client + '/scripts/vendor/**',
+            '!' + dir.client + '/scripts/templates/**',
+            '!' + dir.client + '/scripts/modules/**',
         ])
-        .pipe(jshint('.jshintrc'))
-        .pipe(jshint.reporter('default'))
         .pipe(browserify())
-        .pipe(gulp.dest(dir.client + '/dist/scripts'))
+        .pipe(gulp.dest(dir.client + '/js'));
+});
 
+gulp.task('clientScripts', ['clientLint', 'scripts-browserify'], function() {
+    return gulp.src(dir.client + '/js/**/*.js')
         .pipe(uglify())
-        .pipe(gulp.dest(dir.dist + '/scripts'))
-
-        .pipe(notify({ message: 'Client scripts task complete' }));
+        .pipe(gulp.dest(dir.dist + '/js'));
 });
 
 gulp.task('images', function() {
-    return gulp.src(dir.client + '/images/{,*/}*.{png,jpg,jpeg}')
+    return gulp.src(dir.client + '/images/**/*.{png,jpg,jpeg}')
         .pipe(
             imagemin({ 
                 optimizationLevel: 3, 
                 progressive: true, 
                 interlaced: true 
             }))
-        .pipe(gulp.dest(dir.dist + '/images/'))
-
-        .pipe(notify({ message: 'Images task complete' }));
+        .pipe(gulp.dest(dir.dist + '/images/'));
 });
 
 gulp.task('svg', function() {
-    return gulp.src(dir.client + '/images/{,*/}*.svg')
-        .pipe(
-            svgmin()
-        )
-        .pipe(gulp.dest(dir.dist + '/images/'))
-
-        .pipe(notify({ message: 'SVG task complete' }));
+    return gulp.src(dir.client + '/images/**/*.svg')
+        .pipe(svgmin())
+        .pipe(gulp.dest(dir.dist + '/images/'));
 });
 
-gulp.task('html', function() {
-    return gulp.src(dir.client + '/{,*/}*.{html,htm}')
-        .pipe(
-            htmlmin({
-                removeComments: true,
-                removeCommentsFromCDATA: true,
-                collapseBooleanAttributes: true,
-                removeRedundentAttributes: true,
-                removeAttributeQuotes: true,
-                removeEmptyAttributes: true,
-                removeOptionalTags: true
-            })
-        )
-        .pipe(gulp.dest(dir.dist))
-
-        .pipe(notify({ message: 'HTML task complete' }));
+gulp.task('fonts', function() {
+    return gulp.src(dir.client + '/fonts/**')
+        .pipe(gulp.dest(dir.dist + '/fonts/'));
 });
 
 gulp.task('watch', ['app', 'client'], function() {
 
-    // Watch styles
-    gulp.watch(dir.client + '/styles/{,*/}*.{sass,scss}', ['styles']);
-
     // Watch client scripts
-    gulp.watch(dir.client + '/scripts/{,*/}*.js', ['clientScripts']);
-
-    // Watch server scripts
-    gulp.watch(dir.app + '/{,*/}*.js', ['app-restart']);
+    gulp.watch(dir.client + '/scripts/**/*.js', ['clientScripts']);
 
     // Watch image files
-    gulp.watch(dir.client + '/images/{,*/}*.{png,jpg,jpeg}', ['images']);
+    gulp.watch(dir.client + '/images/**/*.{png,jpg,jpeg}', ['images']);
 
     // Watch svg files
-    gulp.watch(dir.client + '/images/{,*/}*.svg', ['svg']);
+    gulp.watch(dir.client + '/images/**/*.svg', ['svg']);
 
-    // Watch html files
-    gulp.watch(dir.client + '/{,*/}*.{html,htm}', ['html']);
+    // Watch svg files
+    gulp.watch(dir.client + '/fonts/**', ['fonts']);
 
+    // Watch styles
+    gulp.watch(dir.client + '/sass/**/*.{sass,scss}', ['styles']);
 });
 
 gulp.task('mocha', function() {
-    gulp.src('./test/{,*/}*.js')
+    gulp.src('./test/**/*.js')
         .pipe(mocha({ reporter: 'list' }));
 });
 
 gulp.task('lint', function() {
     return gulp.src([
             'gulpfile.js',
-            '<%%= yeoman.app %>/{,*/}*.js',
-            '<%%= yeoman.config %>/{,*/}*.js',
-            'test/{,*/}*.js'
+            '<%%= yeoman.app %>/**/*.js',
+            '<%%= yeoman.config %>/**/*.js',
+            'test/**/*.js'
         ])
         .pipe(jshint('.jshintrc'))
-        .pipe(jshint.reporter('default'))
-        .pipe(notify({ message: 'Linting task complete' }));
+        .pipe(jshint.reporter('default'));
+});
+
+gulp.task('clientLint', function() {
+    return gulp.src([
+            dir.client + '/scripts/**/*.js',
+            '!' + dir.client + '/scripts/vendor/**',
+        ])
+        .pipe(jshint('.jshintrc'))
+        .pipe(jshint.reporter('default'));
 });
 
 gulp.task('client', ['rimraf', 'bower'], function() {
-    gulp.start('styles', 'clientScripts', 'images', 'svg', 'html');
+    gulp.start('styles', 'clientScripts', 'images', 'svg', 'fonts');
 });
 
 gulp.task('test', ['lint', 'mocha']);
@@ -172,11 +156,12 @@ gulp.task('app', function() {
                 dir.client,
                 dir.dist
             ],
-            watchedExtensions: ['js'],
-            watchedFolders: [dir.app, 'config'],
+            watchedExtensions: ['js', 'json', 'html'],
+            watchedFolders: [dir.app, 'config', 'views'],
             debug: true,
             delayTime: 1,
             env: {
+                NODE_ENV: 'local',
                 PORT: 3000
             },
         })
@@ -189,7 +174,4 @@ gulp.task('app-restart', function() {
 });
 
 /** Build it all up and serve it */
-gulp.task('default', ['watch']);
-
-// /** Build it all up and serve the production version */
-// gulp.task('serve', ['app', 'client', 'watch']);
+gulp.task('default', ['app', 'watch']);

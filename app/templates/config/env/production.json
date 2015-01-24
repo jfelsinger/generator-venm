@@ -1,7 +1,13 @@
 {
     "db": "mongodb://localhost/venm-production",
-    "staticFiles": "dist",
-    "url": "http://127.0.0.1",
+    "url": "http://127.0.0.1",<% if (includes.i18n) { %>
+    "i18n": {
+        "locales": ["en"],
+        "defaultLocale": "en",
+        "cookie": "locale"
+    },<% } %>
+    "staticLocation": "client",
+    "assetsLocation": "client",
     "app": {
         "name": "<%= appName %> - Production"
     }

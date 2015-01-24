@@ -1,3 +1,5 @@
+'use strict';
+
 exports.get = function(req, res) {
     res.json([
         { name: 'test 1' },

@@ -1,3 +1,5 @@
+var debug = require('debug')('venm');
+
 // Module Dependencies
 var express = require('express'),
     walk = require('./lib/walk');
@@ -22,7 +24,8 @@ require('./config/express')(app);
 // Start the application
 var port = config.port;
 app.listen(port);
-console.log('Express application started on port ' + port);
+debug('Express application started on port ' + port);
+debug('Environment: ' + env);
 
 // Show yourself
 exports = module.exports = app;

@@ -4,8 +4,10 @@ var path = require('path'),
 module.exports = {
     defaultController: 'index',
     defaultControllerMethod: 'render',
+    secret: 'yoursecret',
     root: root,
     port: process.env.PORT || 3000,
+    domain: process.env.DOMAIN || 'localhost',
     db: process.env.MONGOHQ_URL,
     auth: {
         twitter: {

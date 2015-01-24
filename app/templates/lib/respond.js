@@ -15,3 +15,19 @@ module.exports = function respond(cb) {
     };
 }
 
+
+/**
+ * Return a cb that routes to the next handler if there was an error
+ */
+module.exports.errorNext =
+module.exports.errNext =
+function(cb, next, that) {
+    return function(err) {
+        if (err) {
+            console.error(err);
+            return next(err);
+        }
+
+        cb.apply(that, arguments);
+    };
+};

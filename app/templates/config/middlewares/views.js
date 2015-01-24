@@ -3,17 +3,25 @@
  * Setup the view engine
  */
 
-var layout = require('express-layout'),
-    hbs = require('hbs'),
-    swag = require('swag');
+var <% if (includes.swag) { %>
+    swag = require('swag'),<% } %>
+    <% if (includes.moment) { %>
+    moment = require('moment'),<% } %>
+    hbs = require('hbs');
 
 module.exports = function(app) {
-    hbs.registerPartials(__dirname + '/../../views/partials');
-    swag.registerHelpers(hbs);
+    
+    'use strict';
 
-    app.use(layout());
-    app.set('layouts', 'views/layouts');
-    app.set('layout', 'main.html');
+    hbs.registerPartials(__dirname + '/../../views/partials');
+
+    // Helpers
+    hbs.registerHelper('json', JSON.stringify);<% if (includes.swag) { %>
+    swag.registerHelpers(hbs);<% } %><% if (includes.moment) { %>
+    hbs.registerHelper('moment', function(format, value) {
+        return moment(value).format(format);
+    });<% } %>
+
     app.set('view engine', 'html');
     app.engine('html', hbs.__express);
 };
