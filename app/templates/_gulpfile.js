@@ -98,7 +98,7 @@ gulp.task('fonts', function() {
         .pipe(gulp.dest(dir.dist + '/fonts/'));
 });
 
-gulp.task('watch', ['app', 'client'], function() {
+gulp.task('watch', ['client'], function() {
 
     // Watch client scripts
     gulp.watch(dir.client + '/scripts/**/*.js', ['clientScripts']);

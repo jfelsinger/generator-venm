@@ -11,8 +11,10 @@
         "express": "^4.3.1",
         "express-session": "^1.2.1",
         "express-layout": "^0.1.0",
-        "hbs": "^2.7.0",
-        "swag": "^0.7.0",
+        "hbs": "^2.7.0",<% if (includes.swag) { %>
+        "swag": "^0.7.0",<% } if (includes.i18n) { %>
+        "i18n": "^0.5.0",<% } if (includes.moment) { %>
+        "moment": "^2.9.0",<% } %>
         "cookie-parser": "^1.1.0",
         "debug": "^2.1.1",
         "method-override": "^1.0.2",

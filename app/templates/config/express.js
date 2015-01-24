@@ -5,7 +5,8 @@ var express = require('express'),
     methodOverride = require('method-override'),
     flash = require('connect-flash'),
     session = require('express-session'),
-    parallel = require('../lib/parallel'),
+    parallel = require('../lib/parallel'),<% if (includes.i18n) { %>
+    i18n = require('i18n'),<% } %>
     passport = require('passport');
 
 var config = require('./config');
