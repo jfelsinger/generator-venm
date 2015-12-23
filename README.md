@@ -2,7 +2,7 @@
 
 A somewhat opinionated [Yeoman](http://yeoman.io) generator for applications built upon the VENM stack.
 
-**Disclaimer**: This is pretty new project, so it could probably still use some work.
+**Disclaimer**: This project is currently pretty dated and hasn't been comitted to in a while. There is a new version in the works, but the current version is pretty buggy. You might want to wait.
 
 ## Getting Started
 
